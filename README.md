@@ -56,12 +56,12 @@ To generate the documentation using Doxygen, follow these steps:
 
 1. Ensure Doxygen is installed on your system.
 
-2. Run Doxygen with the provided [Doxyfile](http://_vscodecontentref_/1):
+2. Run Doxygen with the provided `Doxyfile`:
     ```sh
     doxygen Doxyfile
     ```
 
-The documentation will be generated in the [docs](http://_vscodecontentref_/2) directory.
+The documentation will be generated in the `docs` directory.
 
 ## Usage
 
@@ -71,6 +71,11 @@ The project provides classes to represent the Bose-Hubbard Hamiltonian and to pe
 - `Neighbours`: Generates the list of neighbours for different lattice structures i.e. the geometry of the lattice.
 - `Operator`: Provides various matrix operations and diagonalization methods.
 
+## Authors
+
+- [Maximilien HANTONNE] (https://github.com/Maximilien-Hantonne)
+- [Remy LYSCAR] (https://github.com/Remy-Lyscar)
+  
 ## Contributing
 
 Contributions are welcome! Please open an issue or submit a pull request for any improvements or bug fixes.
