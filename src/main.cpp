@@ -55,7 +55,7 @@ int main(int argc, char *argv[]) {
     /// PARAMETERS OF THE MODEL
     int m, n;
     double J, U, mu, s, r;
-    double mu_min, mu_max, U_min, U_max;
+    [[maybe_unused]] double J_min, J_max, mu_min, mu_max, U_min, U_max;
 
     const char* const short_opts = "m:n:J:U:u:r:s:h";
     const option long_opts[] = {
@@ -101,6 +101,8 @@ int main(int argc, char *argv[]) {
                 return 0;
         }
     }
+    J_min = J;
+    J_max = J + r;
 	mu_min = mu;
     mu_max = mu + r;
     U_min = U;
@@ -113,15 +115,15 @@ int main(int argc, char *argv[]) {
 
     // PLOT OF THE PHASE TRANSITION
     std::ofstream file("phase.txt");
-    for (double mu = mu_min; mu <= mu_max; mu += s) {
+    for (double J = J_min; J <= J_max; J += s) {
         for (double U = U_min; U <= U_max; U += s) {
             BH hmatrix(nei, m, n, J, U, mu);
             Eigen::SparseMatrix<double> smatrix = hmatrix.getHamiltonian();
             Operator H(std::move(smatrix));
             double gap_ratio = H.gap_ratio();
-            double boson_density = H.boson_density(1, n);
-            double compressibility = H.compressibility(1, n);
-            file << mu << " " << U << " " << gap_ratio << " " << boson_density << " " << compressibility << std::endl;
+            double boson_density = H.boson_density(0.05, n);
+            double compressibility = H.compressibility(0.05, n);
+            file << J << " " << U << " " << gap_ratio << " " << boson_density << " " << compressibility << std::endl;
         }
     }
     file.close();
