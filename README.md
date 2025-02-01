@@ -30,7 +30,7 @@ To build the project, follow these steps:
 
 1. Clone the repository:
     ```sh
-    git clone https://github.com/yourusername/Bose-Hubbard-Phase-Transition.git
+    git clone https://github.com/Maximilien-Hantonne/Bose-Hubbard-Phase-Transition.git
     cd Bose-Hubbard-Phase-Transition
     ```
 
@@ -70,6 +70,20 @@ The project provides classes to represent the Bose-Hubbard Hamiltonian and to pe
 - `BH`: Represents the Bose-Hubbard Hamiltonian.
 - `Neighbours`: Generates the list of neighbours for different lattice structures i.e. the geometry of the lattice.
 - `Operator`: Provides various matrix operations and diagonalization methods.
+
+### Command-Line Options
+
+The `main` function parses command-line arguments to set up the parameters for the Bose-Hubbard model.
+
+Command-line options:
+- `-m, --sites`: Number of sites in the lattice.
+- `-n, --bosons`: Number of bosons in the lattice.
+- `-J, --hopping`: Hopping parameter.
+- `-U, --interaction`: On-site interaction parameter.
+- `-u, --potential`: Chemical potential.
+- `-r, --range`: Range for chemical potential and interaction.
+- `-s, --step`: Step for chemical potential and interaction.
+- `-h, --help`: Display usage information.
 
 ## Authors
 
