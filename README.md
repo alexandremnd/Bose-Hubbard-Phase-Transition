@@ -14,7 +14,7 @@ This repository contains the implementation of the Bose-Hubbard model, which des
 - `external/`: Contains external dependencies.
   - `spectra/`: Header-only C++ library for large scale eigenvalue problems.
 
-- `docs/`: Contains the generated documentation for the project.
+- `documentation.pdf`: Contains the generated documentation for the project.
 
 - `CMakeLists.txt`: CMake configuration file for building the project.
 
