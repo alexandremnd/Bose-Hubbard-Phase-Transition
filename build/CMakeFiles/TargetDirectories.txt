@@ -1,4 +1,3 @@
-/home/comel/Bose-Hubbard-Phase-Transition/build/CMakeFiles/doc_doxygen.dir
 /home/comel/Bose-Hubbard-Phase-Transition/build/CMakeFiles/QuantumProject.dir
 /home/comel/Bose-Hubbard-Phase-Transition/build/CMakeFiles/edit_cache.dir
 /home/comel/Bose-Hubbard-Phase-Transition/build/CMakeFiles/rebuild_cache.dir

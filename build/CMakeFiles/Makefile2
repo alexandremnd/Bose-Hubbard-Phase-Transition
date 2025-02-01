@@ -71,35 +71,8 @@ preinstall:
 .PHONY : preinstall
 
 # The main recursive "clean" target.
-clean: CMakeFiles/doc_doxygen.dir/clean
 clean: CMakeFiles/QuantumProject.dir/clean
 .PHONY : clean
-
-#=============================================================================
-# Target rules for target CMakeFiles/doc_doxygen.dir
-
-# All Build rule for target.
-CMakeFiles/doc_doxygen.dir/all:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/doc_doxygen.dir/build.make CMakeFiles/doc_doxygen.dir/depend
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/doc_doxygen.dir/build.make CMakeFiles/doc_doxygen.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/comel/Bose-Hubbard-Phase-Transition/build/CMakeFiles --progress-num=6 "Built target doc_doxygen"
-.PHONY : CMakeFiles/doc_doxygen.dir/all
-
-# Build rule for subdir invocation for target.
-CMakeFiles/doc_doxygen.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/comel/Bose-Hubbard-Phase-Transition/build/CMakeFiles 1
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/doc_doxygen.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/comel/Bose-Hubbard-Phase-Transition/build/CMakeFiles 0
-.PHONY : CMakeFiles/doc_doxygen.dir/rule
-
-# Convenience name for target.
-doc_doxygen: CMakeFiles/doc_doxygen.dir/rule
-.PHONY : doc_doxygen
-
-# clean rule for target.
-CMakeFiles/doc_doxygen.dir/clean:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/doc_doxygen.dir/build.make CMakeFiles/doc_doxygen.dir/clean
-.PHONY : CMakeFiles/doc_doxygen.dir/clean
 
 #=============================================================================
 # Target rules for target CMakeFiles/QuantumProject.dir
