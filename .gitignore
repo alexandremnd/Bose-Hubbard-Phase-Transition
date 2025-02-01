@@ -1,7 +1,12 @@
 # Ignore Doxygen configuration file
 Doxyfile
 
-build
+#Ignore folders
+.cache/
+build/
+
+#Ignore various files
+*.o
 *Zone.Identifier
 *.json
 
