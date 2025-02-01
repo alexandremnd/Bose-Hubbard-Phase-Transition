@@ -101,8 +101,10 @@ Include dependency graph for main.cpp:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:ae5ad5cbeccaedc03a48d3c7eaa803e79" id="r_ae5ad5cbeccaedc03a48d3c7eaa803e79"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#ae5ad5cbeccaedc03a48d3c7eaa803e79">print_usage</a> ()</td></tr>
+<tr class="memdesc:ae5ad5cbeccaedc03a48d3c7eaa803e79"><td class="mdescLeft">&#160;</td><td class="mdescRight">Print the usage information for the program.  <br /></td></tr>
 <tr class="separator:ae5ad5cbeccaedc03a48d3c7eaa803e79"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0ddf1224851353fc92bfbff6f499fa97" id="r_a0ddf1224851353fc92bfbff6f499fa97"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97">main</a> (int argc, char *argv[])</td></tr>
+<tr class="memdesc:a0ddf1224851353fc92bfbff6f499fa97"><td class="mdescLeft">&#160;</td><td class="mdescRight">Main function for the Bose-Hubbard Phase Transition program.  <br /></td></tr>
 <tr class="separator:a0ddf1224851353fc92bfbff6f499fa97"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
@@ -131,6 +133,27 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Main function for the Bose-Hubbard Phase Transition program. </p>
+<p>This function parses command-line arguments to set up the parameters for the Bose-Hubbard model.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">argc</td><td>Number of command-line arguments. </td></tr>
+    <tr><td class="paramname">argv</td><td>Array of command-line arguments.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Command-line options:</p><ul>
+<li><code>-m, --sites</code>: Number of sites in the lattice.</li>
+<li><code>-n, --bosons</code>: Number of bosons in the lattice.</li>
+<li><code>-J, --hopping</code>: Hopping parameter.</li>
+<li><code>-U, --interaction</code>: On-site interaction parameter.</li>
+<li><code>-u, --potential</code>: Chemical potential.</li>
+<li><code>-r, --range</code>: Range for chemical potential and interaction.</li>
+<li><code>-s, --step</code>: Step for chemical potential and interaction.</li>
+<li><code>-h, --help</code>: Display usage information.</li>
+</ul>
+<dl class="section return"><dt>Returns</dt><dd>int Exit status of the program. </dd></dl>
 <p>PARAMETERS OF THE MODEL</p>
 <p>GEOMETRY OF THE LATTICE</p>
 <p>PHASE TRANSITION CALCULATIONS</p>
@@ -151,6 +174,8 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Print the usage information for the program. </p>
 
 </div>
 </div>

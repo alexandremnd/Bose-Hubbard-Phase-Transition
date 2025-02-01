@@ -14,7 +14,9 @@
 #include "neighbours.h"
 
 
-
+/**
+ * @brief Print the usage information for the program.
+ */
 void print_usage() {
     std::cout << "Usage: program [options]\n"
               << "Options:\n"
@@ -23,24 +25,47 @@ void print_usage() {
               << "  -J, --hopping     Hopping parameter\n"
               << "  -U, --interaction On-site interaction\n"
               << "  -u, --potential   Chemical potential\n"
-              << "  -s, --range       Range for chemical potential and interaction\n";
+              << "  -r, --range     Range for chemical potential and interaction\n"
+              << "  -s, --step      Step for chemical potential and interaction\n";
 }
+
+/**
+ * @brief Main function for the Bose-Hubbard Phase Transition program.
+ * 
+ * This function parses command-line arguments to set up the parameters for the Bose-Hubbard model.
+ * 
+ * @param argc Number of command-line arguments.
+ * @param argv Array of command-line arguments.
+ * 
+ * Command-line options:
+ * - `-m, --sites`: Number of sites in the lattice.
+ * - `-n, --bosons`: Number of bosons in the lattice.
+ * - `-J, --hopping`: Hopping parameter.
+ * - `-U, --interaction`: On-site interaction parameter.
+ * - `-u, --potential`: Chemical potential.
+ * - `-r, --range`: Range for chemical potential and interaction.
+ * - `-s, --step`: Step for chemical potential and interaction.
+ * - `-h, --help`: Display usage information.
+ * 
+ * @return int Exit status of the program.
+ */
 
 int main(int argc, char *argv[]) {
 
     /// PARAMETERS OF THE MODEL
     int m, n;
-    double J, U, mu, s;
+    double J, U, mu, s, r;
     double mu_min, mu_max, U_min, U_max;
 
-    const char* const short_opts = "m:n:J:U:u:s:h";
+    const char* const short_opts = "m:n:J:U:u:r:s:h";
     const option long_opts[] = {
         {"sites", required_argument, nullptr, 'm'},
         {"bosons", required_argument, nullptr, 'n'},
         {"hopping", required_argument, nullptr, 'J'},
         {"interaction", required_argument, nullptr, 'U'},
         {"potential", required_argument, nullptr, 'u'},
-        {"range", required_argument, nullptr, 's'},
+        {"range", required_argument, nullptr, 'r'},
+        {"step", required_argument, nullptr, 's'},
 		{"help", no_argument, nullptr, 'h'},
         {nullptr, no_argument, nullptr, 0}
     };
@@ -64,6 +89,9 @@ int main(int argc, char *argv[]) {
             case 'u':
                 mu = std::stod(optarg);
                 break;
+            case 'r':
+                r = std::stod(optarg);
+                break;
             case 's':
                 s = std::stod(optarg);
                 break;
@@ -74,9 +102,9 @@ int main(int argc, char *argv[]) {
         }
     }
 	mu_min = mu;
-    mu_max = mu + s;
+    mu_max = mu + r;
     U_min = U;
-    U_max = U + s;
+    U_max = U + r;
 
 	/// GEOMETRY OF THE LATTICE
 	Neighbours neighbours(m);
@@ -85,8 +113,8 @@ int main(int argc, char *argv[]) {
 
     // PLOT OF THE PHASE TRANSITION
     std::ofstream file("phase.txt");
-    for (double mu = mu_min; mu <= mu_max; mu += 0.1) {
-        for (double U = U_min; U <= U_max; U += 0.1) {
+    for (double mu = mu_min; mu <= mu_max; mu += s) {
+        for (double U = U_min; U <= U_max; U += s) {
             BH hmatrix(nei, m, n, J, U, mu);
             Eigen::SparseMatrix<double> smatrix = hmatrix.getHamiltonian();
             Operator H(std::move(smatrix));
