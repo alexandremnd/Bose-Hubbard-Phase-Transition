@@ -116,6 +116,7 @@ Command-line options:
 Example (Linux):
 ```sh
 ./QuantumProject -m 5 -n 5 -J 100 -U 0 -u 0 -r 100 -s 5
+```
 
 ## Authors
 
