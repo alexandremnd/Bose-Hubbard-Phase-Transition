@@ -74,7 +74,7 @@ The project provides classes to represent the Bose-Hubbard Hamiltonian and to pe
 ## Authors
 
 - [Maximilien HANTONNE](https://github.com/Maximilien-Hantonne)
-- [Remy LYSCAR](https://github.com/Remy-Lyscar)
+- [Rémy LYSCAR](https://github.com/Remy-Lyscar)
   
 ## Contributing
 
