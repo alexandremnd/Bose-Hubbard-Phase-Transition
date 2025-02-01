@@ -54,6 +54,10 @@ To build the project, follow these steps:
 
 To generate the documentation using Doxygen, follow these steps:
 
+### HTML Documentation
+
+To generate the HTML documentation using Doxygen, follow these steps:
+
 1. Ensure Doxygen is installed on your system.
 
 2. Run Doxygen with the provided `Doxyfile`:
@@ -61,7 +65,33 @@ To generate the documentation using Doxygen, follow these steps:
     doxygen Doxyfile
     ```
 
-The documentation will be generated in the `docs` directory.
+The documentation will be generated in the `docs/html` directory.
+
+### LaTeX Documentation
+
+To generate the LaTeX documentation using Doxygen, follow these steps:
+
+1. Ensure Doxygen and LaTeX are installed on your system. You can install LaTeX using:
+    ```sh
+    sudo apt-get install texlive-full
+    ```
+
+2. Run Doxygen with the provided `Doxyfile`:
+    ```sh
+    doxygen Doxyfile
+    ```
+
+3. Navigate to the `docs/latex` directory:
+    ```sh
+    cd docs/latex
+    ```
+
+4. Compile the LaTeX documentation:
+    ```sh
+    make
+    ```
+
+The PDF documentation will be generated in the `docs/latex` directory.
 
 ## Usage
 
@@ -85,6 +115,7 @@ Command-line options:
 - `-s, --step`: Step for chemical potential and interaction.
 - `-h, --help`: Display usage information.
 
+
 ## Authors
 
 - [Maximilien HANTONNE](https://github.com/Maximilien-Hantonne)
@@ -92,7 +123,7 @@ Command-line options:
   
 ## Contributing
 
-Contributions are welcome! Please open an issue or submit a pull request for any improvements or bug fixes.
+Contributions are currently not open :(
 
 ## License
 
