@@ -1,6 +1,6 @@
 # Ignore Doxygen configuration file
 Doxyfile
-
+.cache
 build
 *Zone.Identifier
 *.json
