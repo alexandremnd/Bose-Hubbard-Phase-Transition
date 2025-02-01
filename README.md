@@ -14,8 +14,6 @@ This repository contains the implementation of the Bose-Hubbard model, which des
 - `external/`: Contains external dependencies.
   - `spectra/`: Header-only C++ library for large scale eigenvalue problems.
 
-- `documentation.pdf`: Contains the generated documentation for the project.
-
 - `CMakeLists.txt`: CMake configuration file for building the project.
 
 ## Dependencies
@@ -24,9 +22,9 @@ This repository contains the implementation of the Bose-Hubbard model, which des
 - [Spectra](https://spectralib.org/): A header-only C++ library for large scale eigenvalue problems.
 - [Doxygen](http://www.doxygen.nl/): A tool for generating documentation from annotated C++ sources.
   
-## Building the Project
+## Building the Project (Linux)
 
-To build the project, follow these steps:
+To build the project on a Linux system, follow these steps:
 
 1. Clone the repository:
     ```sh
@@ -50,13 +48,13 @@ To build the project, follow these steps:
     make
     ```
 
-## Generating Documentation
+## Generating Documentation (Linux)
 
 To generate the documentation using Doxygen, follow these steps:
 
 ### HTML Documentation
 
-To generate the HTML documentation using Doxygen, follow these steps:
+To generate the HTML documentation using Doxygen on a Linux system, follow these steps:
 
 1. Ensure Doxygen is installed on your system.
 
@@ -69,7 +67,7 @@ The documentation will be generated in the `docs/html` directory.
 
 ### LaTeX Documentation
 
-To generate the LaTeX documentation using Doxygen, follow these steps:
+To generate the LaTeX documentation using Doxygen on a Linux system, follow these steps:
 
 1. Ensure Doxygen and LaTeX are installed on your system. You can install LaTeX using:
     ```sh
@@ -115,6 +113,9 @@ Command-line options:
 - `-s, --step`: Step for chemical potential and interaction.
 - `-h, --help`: Display usage information.
 
+Example (Linux):
+```sh
+./QuantumProject -m 5 -n 5 -J 100 -U 0 -u 0 -r 100 -s 5
 
 ## Authors
 
