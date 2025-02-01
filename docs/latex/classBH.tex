@@ -1,0 +1,96 @@
+\doxysection{BH Class Reference}
+\hypertarget{classBH}{}\label{classBH}\index{BH@{BH}}
+
+
+Class representing the Bose-\/\+Hubbard Hamiltonian.  
+
+
+
+
+{\ttfamily \#include $<$hamiltonian.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classBH_abfafbdc60d6892f434962e28ffdf12d8}{BH}} (const std\+::vector$<$ std\+::vector$<$ int $>$ $>$ \&neighbours, int m\+\_\+, int n\+\_\+, double J\+\_\+, double U\+\_\+, double mu\+\_\+)
+\begin{DoxyCompactList}\small\item\em Constructor for the Bose-\/\+Hubbard Hamiltonian. \end{DoxyCompactList}\item 
+Eigen\+::\+Sparse\+Matrix$<$ double $>$ \mbox{\hyperlink{classBH_a0f5e1feb64eb40bf706a58529a41dcbf}{get\+Hamiltonian}} () const
+\begin{DoxyCompactList}\small\item\em Return the Hamiltonian sparse matrix. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classBH_a877ce2e31f07943ffa693ed277d1ad02}{interaction\+\_\+matrix}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Class representing the Bose-\/\+Hubbard Hamiltonian. 
+
+This class implements the Hamiltonian for the Bose-\/\+Hubbard model, which describes interacting bosons on a lattice.
+
+\begin{DoxyWarning}{Warning}
+This class is not thread-\/safe. 
+\end{DoxyWarning}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classBH_abfafbdc60d6892f434962e28ffdf12d8}\label{classBH_abfafbdc60d6892f434962e28ffdf12d8} 
+\index{BH@{BH}!BH@{BH}}
+\index{BH@{BH}!BH@{BH}}
+\doxysubsubsection{\texorpdfstring{BH()}{BH()}}
+{\footnotesize\ttfamily BH\+::\+BH (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ std\+::vector$<$ int $>$ $>$ \&}]{neighbours,  }\item[{int}]{m\+\_\+,  }\item[{int}]{n\+\_\+,  }\item[{double}]{J\+\_\+,  }\item[{double}]{U\+\_\+,  }\item[{double}]{mu\+\_\+ }\end{DoxyParamCaption})}
+
+
+
+Constructor for the Bose-\/\+Hubbard Hamiltonian. 
+
+CONSTRUCTOR ///.
+
+
+\begin{DoxyParams}{Parameters}
+{\em neighbours} & Vector that contains the neighbours of each site of the lattice. \\
+\hline
+{\em m} & Number of sites in the lattice. \\
+\hline
+{\em n} & Number of bosons in the lattice. \\
+\hline
+{\em J} & Hopping parameter of the \doxylink{classBH}{BH} model. \\
+\hline
+{\em U} & Interaction parameter of the \doxylink{classBH}{BH} model. \\
+\hline
+{\em mu} & Chemical potential of the \doxylink{classBH}{BH} model. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classBH_a0f5e1feb64eb40bf706a58529a41dcbf}\label{classBH_a0f5e1feb64eb40bf706a58529a41dcbf} 
+\index{BH@{BH}!getHamiltonian@{getHamiltonian}}
+\index{getHamiltonian@{getHamiltonian}!BH@{BH}}
+\doxysubsubsection{\texorpdfstring{getHamiltonian()}{getHamiltonian()}}
+{\footnotesize\ttfamily Eigen\+::\+Sparse\+Matrix$<$ double $>$ BH\+::get\+Hamiltonian (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Return the Hamiltonian sparse matrix. 
+
+UTILITY FUNCTIONS ///.
+
+\begin{DoxyReturn}{Returns}
+Eigen\+::\+Sparse\+Matrix$<$double$>$ The Hamiltonian sparse matrix. 
+\end{DoxyReturn}
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classBH_a877ce2e31f07943ffa693ed277d1ad02}\label{classBH_a877ce2e31f07943ffa693ed277d1ad02} 
+\index{BH@{BH}!interaction\_matrix@{interaction\_matrix}}
+\index{interaction\_matrix@{interaction\_matrix}!BH@{BH}}
+\doxysubsubsection{\texorpdfstring{interaction\_matrix}{interaction\_matrix}}
+{\footnotesize\ttfamily Eigen\+::\+Vector\+Xd BH\+::interaction\+\_\+matrix}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{hamiltonian_8h}{hamiltonian.\+h}}\item 
+src/\mbox{\hyperlink{hamiltonian_8cpp}{hamiltonian.\+cpp}}\end{DoxyCompactItemize}

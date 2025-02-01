@@ -1,0 +1,152 @@
+\doxysection{Neighbours Class Reference}
+\hypertarget{classNeighbours}{}\label{classNeighbours}\index{Neighbours@{Neighbours}}
+
+
+Class to generate the list of neighbours for a 1D chain, 2D square lattice, or 3D cubic lattice.  
+
+
+
+
+{\ttfamily \#include $<$neighbours.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classNeighbours_a647d6e2c69779efff7842bf19bf1f46e}{Neighbours}} (int m)
+\begin{DoxyCompactList}\small\item\em Constructor for the \doxylink{classNeighbours}{Neighbours} class. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classNeighbours_aba4f2d9818bc95b3e84255f04be64541}{\texorpdfstring{$\sim$}{\string~}\+Neighbours}} ()
+\begin{DoxyCompactList}\small\item\em Destructor for the \doxylink{classNeighbours}{Neighbours} class. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classNeighbours_a14ddebaeac86a4230e2b8e00b8afa647}{chain\+\_\+neighbours}} (bool closed=true)
+\begin{DoxyCompactList}\small\item\em Generate the list of neighbours for a 1D chain. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classNeighbours_a2c8714e12f46920c4ed11aca3aa29b37}{square\+\_\+neighbours}} (bool closed=true)
+\begin{DoxyCompactList}\small\item\em Generate the list of neighbours for a 2D square lattice. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classNeighbours_a4c0ab672b63f0ae80e60a2867714a015}{cube\+\_\+neighbours}} (bool closed=true)
+\begin{DoxyCompactList}\small\item\em Generate the list of neighbours for a 2D square lattice. \end{DoxyCompactList}\item 
+std\+::vector$<$ std\+::vector$<$ int $>$ $>$ \mbox{\hyperlink{classNeighbours_ac8f96353bd4b094a52050196777bd73d}{get\+Neighbours}} () const
+\begin{DoxyCompactList}\small\item\em Return the list of neighbours. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Class to generate the list of neighbours for a 1D chain, 2D square lattice, or 3D cubic lattice. 
+
+\begin{DoxyWarning}{Warning}
+This class is not thread-\/safe. 
+\end{DoxyWarning}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classNeighbours_a647d6e2c69779efff7842bf19bf1f46e}\label{classNeighbours_a647d6e2c69779efff7842bf19bf1f46e} 
+\index{Neighbours@{Neighbours}!Neighbours@{Neighbours}}
+\index{Neighbours@{Neighbours}!Neighbours@{Neighbours}}
+\doxysubsubsection{\texorpdfstring{Neighbours()}{Neighbours()}}
+{\footnotesize\ttfamily Neighbours\+::\+Neighbours (\begin{DoxyParamCaption}\item[{int}]{m }\end{DoxyParamCaption})}
+
+
+
+Constructor for the \doxylink{classNeighbours}{Neighbours} class. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em m} & Number of sites in the lattice. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classNeighbours_aba4f2d9818bc95b3e84255f04be64541}\label{classNeighbours_aba4f2d9818bc95b3e84255f04be64541} 
+\index{Neighbours@{Neighbours}!````~Neighbours@{\texorpdfstring{$\sim$}{\string~}Neighbours}}
+\index{````~Neighbours@{\texorpdfstring{$\sim$}{\string~}Neighbours}!Neighbours@{Neighbours}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}Neighbours()}{\string~Neighbours()}}
+{\footnotesize\ttfamily Neighbours\+::\texorpdfstring{$\sim$}{\string~}\+Neighbours (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Destructor for the \doxylink{classNeighbours}{Neighbours} class. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classNeighbours_a14ddebaeac86a4230e2b8e00b8afa647}\label{classNeighbours_a14ddebaeac86a4230e2b8e00b8afa647} 
+\index{Neighbours@{Neighbours}!chain\_neighbours@{chain\_neighbours}}
+\index{chain\_neighbours@{chain\_neighbours}!Neighbours@{Neighbours}}
+\doxysubsubsection{\texorpdfstring{chain\_neighbours()}{chain\_neighbours()}}
+{\footnotesize\ttfamily void Neighbours\+::chain\+\_\+neighbours (\begin{DoxyParamCaption}\item[{bool}]{closed = {\ttfamily true} }\end{DoxyParamCaption})}
+
+
+
+Generate the list of neighbours for a 1D chain. 
+
+1D ///
+
+
+\begin{DoxyParams}{Parameters}
+{\em m} & Number of sites in the chain. \\
+\hline
+{\em closed} & By default, closed = true for periodic boundary conditions, closed = false for open boundary conditions. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyWarning}{Warning}
+Ensure that the number of sites is greater than 1. 
+\end{DoxyWarning}
+\Hypertarget{classNeighbours_a4c0ab672b63f0ae80e60a2867714a015}\label{classNeighbours_a4c0ab672b63f0ae80e60a2867714a015} 
+\index{Neighbours@{Neighbours}!cube\_neighbours@{cube\_neighbours}}
+\index{cube\_neighbours@{cube\_neighbours}!Neighbours@{Neighbours}}
+\doxysubsubsection{\texorpdfstring{cube\_neighbours()}{cube\_neighbours()}}
+{\footnotesize\ttfamily void Neighbours\+::cube\+\_\+neighbours (\begin{DoxyParamCaption}\item[{bool}]{closed = {\ttfamily true} }\end{DoxyParamCaption})}
+
+
+
+Generate the list of neighbours for a 2D square lattice. 
+
+3D ///
+
+
+\begin{DoxyParams}{Parameters}
+{\em m} & Number of sites in the square. \\
+\hline
+{\em closed} & By default, closed = true for periodic boundary conditions, closed = false for open boundary conditions. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyWarning}{Warning}
+Ensure that the number of sites is a perfect cube. 
+\end{DoxyWarning}
+\Hypertarget{classNeighbours_ac8f96353bd4b094a52050196777bd73d}\label{classNeighbours_ac8f96353bd4b094a52050196777bd73d} 
+\index{Neighbours@{Neighbours}!getNeighbours@{getNeighbours}}
+\index{getNeighbours@{getNeighbours}!Neighbours@{Neighbours}}
+\doxysubsubsection{\texorpdfstring{getNeighbours()}{getNeighbours()}}
+{\footnotesize\ttfamily std\+::vector$<$ std\+::vector$<$ int $>$ $>$ Neighbours\+::get\+Neighbours (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Return the list of neighbours. 
+
+UTILITY FUNCTIONS ///.
+
+\begin{DoxyReturn}{Returns}
+std\+::vector$<$std\+::vector$<$int$>$$>$ The list of neighbours for each site of the lattice. 
+\end{DoxyReturn}
+\Hypertarget{classNeighbours_a2c8714e12f46920c4ed11aca3aa29b37}\label{classNeighbours_a2c8714e12f46920c4ed11aca3aa29b37} 
+\index{Neighbours@{Neighbours}!square\_neighbours@{square\_neighbours}}
+\index{square\_neighbours@{square\_neighbours}!Neighbours@{Neighbours}}
+\doxysubsubsection{\texorpdfstring{square\_neighbours()}{square\_neighbours()}}
+{\footnotesize\ttfamily void Neighbours\+::square\+\_\+neighbours (\begin{DoxyParamCaption}\item[{bool}]{closed = {\ttfamily true} }\end{DoxyParamCaption})}
+
+
+
+Generate the list of neighbours for a 2D square lattice. 
+
+2D ///
+
+
+\begin{DoxyParams}{Parameters}
+{\em m} & Number of sites in the square. \\
+\hline
+{\em closed} & By default, closed = true for periodic boundary conditions, closed = false for open boundary conditions. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyWarning}{Warning}
+Ensure that the number of sites is a perfect square. 
+\end{DoxyWarning}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{neighbours_8h}{neighbours.\+h}}\item 
+src/\mbox{\hyperlink{neighbours_8cpp}{neighbours.\+cpp}}\end{DoxyCompactItemize}

@@ -1,0 +1,8 @@
+# Ignore Doxygen configuration file
+Doxyfile
+
+build
+*Zone.Identifier
+*.json
+
+

@@ -1,0 +1,104 @@
+\doxysection{Hamiltonian Class Reference}
+\hypertarget{classHamiltonian}{}\label{classHamiltonian}\index{Hamiltonian@{Hamiltonian}}
+
+
+Base class for Hamiltonians.  
+
+
+
+
+{\ttfamily \#include $<$hamiltonian.\+h$>$}
+
+
+
+Inheritance diagram for Hamiltonian\+:
+% FIG 0
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{classHamiltonian_aa4d2a099cecdb044f1b51dda980a2175}{display\+\_\+all}} () const =0
+\begin{DoxyCompactList}\small\item\em Display all the attributes of the \doxylink{classHamiltonian}{Hamiltonian}. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T $>$ }\\void \mbox{\hyperlink{classHamiltonian_a7813ca465ca0376136cf0f6d23ae91bf}{display\+Sparse\+Matrix}} (const Eigen\+::\+Sparse\+Matrix$<$ T $>$ \&M) const
+\begin{DoxyCompactList}\small\item\em Display a sparse matrix in a standard form in the terminal, as a full matrix. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classHamiltonian_af6e7434469539e35b14549a11dff515e}{display\+Matrix}} (const Eigen\+::\+Matrix\+Xd \&M) const
+\begin{DoxyCompactList}\small\item\em Display a dense matrix in the terminal. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+double \mbox{\hyperlink{classHamiltonian_af7818a7b6601ae8da7d803fb6ba701bb}{epsilon}} = 1e-\/10
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Base class for Hamiltonians. 
+
+This class provides a common interface for different types of Hamiltonians. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classHamiltonian_aa4d2a099cecdb044f1b51dda980a2175}\label{classHamiltonian_aa4d2a099cecdb044f1b51dda980a2175} 
+\index{Hamiltonian@{Hamiltonian}!display\_all@{display\_all}}
+\index{display\_all@{display\_all}!Hamiltonian@{Hamiltonian}}
+\doxysubsubsection{\texorpdfstring{display\_all()}{display\_all()}}
+{\footnotesize\ttfamily virtual void Hamiltonian\+::display\+\_\+all (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Display all the attributes of the \doxylink{classHamiltonian}{Hamiltonian}. 
+
+
+
+Implemented in \mbox{\hyperlink{classXY_a3f288eda9c09bce083921468dec7418f}{XY}}, and \mbox{\hyperlink{classBH_af304bb8f08378a7cda7ad8decfa05061}{BH}}.
+
+\Hypertarget{classHamiltonian_af6e7434469539e35b14549a11dff515e}\label{classHamiltonian_af6e7434469539e35b14549a11dff515e} 
+\index{Hamiltonian@{Hamiltonian}!displayMatrix@{displayMatrix}}
+\index{displayMatrix@{displayMatrix}!Hamiltonian@{Hamiltonian}}
+\doxysubsubsection{\texorpdfstring{displayMatrix()}{displayMatrix()}}
+{\footnotesize\ttfamily void Hamiltonian\+::display\+Matrix (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Matrix\+Xd \&}]{M }\end{DoxyParamCaption}) const}
+
+
+
+Display a dense matrix in the terminal. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em M} & The dense matrix to display. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classHamiltonian_a7813ca465ca0376136cf0f6d23ae91bf}\label{classHamiltonian_a7813ca465ca0376136cf0f6d23ae91bf} 
+\index{Hamiltonian@{Hamiltonian}!displaySparseMatrix@{displaySparseMatrix}}
+\index{displaySparseMatrix@{displaySparseMatrix}!Hamiltonian@{Hamiltonian}}
+\doxysubsubsection{\texorpdfstring{displaySparseMatrix()}{displaySparseMatrix()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+template void Hamiltonian\+::display\+Sparse\+Matrix (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Sparse\+Matrix$<$ T $>$ \&}]{M }\end{DoxyParamCaption}) const}
+
+
+
+Display a sparse matrix in a standard form in the terminal, as a full matrix. 
+
+DISPLAY FUNCTIONS ///.
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & The type of the elements in the sparse matrix. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em M} & The sparse matrix to display. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classHamiltonian_af7818a7b6601ae8da7d803fb6ba701bb}\label{classHamiltonian_af7818a7b6601ae8da7d803fb6ba701bb} 
+\index{Hamiltonian@{Hamiltonian}!epsilon@{epsilon}}
+\index{epsilon@{epsilon}!Hamiltonian@{Hamiltonian}}
+\doxysubsubsection{\texorpdfstring{epsilon}{epsilon}}
+{\footnotesize\ttfamily double Hamiltonian\+::epsilon = 1e-\/10\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{hamiltonian_8h}{hamiltonian.\+h}}\item 
+src/\mbox{\hyperlink{hamiltonian_8cpp}{hamiltonian.\+cpp}}\end{DoxyCompactItemize}
