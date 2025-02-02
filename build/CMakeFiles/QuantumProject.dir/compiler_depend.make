@@ -450,13 +450,22 @@ CMakeFiles/QuantumProject.dir/src/hamiltonian.cpp.o: /home/comel/Bose-Hubbard-Ph
   /usr/include/x86_64-linux-gnu/bits/pthreadtypes-arch.h \
   /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h \
   /usr/include/x86_64-linux-gnu/bits/sched.h \
+  /usr/include/x86_64-linux-gnu/bits/select-decl.h \
   /usr/include/x86_64-linux-gnu/bits/select.h \
+  /usr/include/x86_64-linux-gnu/bits/select2.h \
   /usr/include/x86_64-linux-gnu/bits/setjmp.h \
   /usr/include/x86_64-linux-gnu/bits/stdint-intn.h \
   /usr/include/x86_64-linux-gnu/bits/stdint-least.h \
   /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h \
+  /usr/include/x86_64-linux-gnu/bits/stdio.h \
+  /usr/include/x86_64-linux-gnu/bits/stdio2-decl.h \
+  /usr/include/x86_64-linux-gnu/bits/stdio2.h \
   /usr/include/x86_64-linux-gnu/bits/stdio_lim.h \
+  /usr/include/x86_64-linux-gnu/bits/stdlib-bsearch.h \
   /usr/include/x86_64-linux-gnu/bits/stdlib-float.h \
+  /usr/include/x86_64-linux-gnu/bits/stdlib.h \
+  /usr/include/x86_64-linux-gnu/bits/string_fortified.h \
+  /usr/include/x86_64-linux-gnu/bits/strings_fortified.h \
   /usr/include/x86_64-linux-gnu/bits/struct_mutex.h \
   /usr/include/x86_64-linux-gnu/bits/struct_rwlock.h \
   /usr/include/x86_64-linux-gnu/bits/syscall.h \
@@ -493,10 +502,14 @@ CMakeFiles/QuantumProject.dir/src/hamiltonian.cpp.o: /home/comel/Bose-Hubbard-Ph
   /usr/include/x86_64-linux-gnu/bits/typesizes.h \
   /usr/include/x86_64-linux-gnu/bits/uintn-identity.h \
   /usr/include/x86_64-linux-gnu/bits/uio_lim.h \
+  /usr/include/x86_64-linux-gnu/bits/unistd-decl.h \
+  /usr/include/x86_64-linux-gnu/bits/unistd.h \
   /usr/include/x86_64-linux-gnu/bits/unistd_ext.h \
   /usr/include/x86_64-linux-gnu/bits/waitflags.h \
   /usr/include/x86_64-linux-gnu/bits/waitstatus.h \
   /usr/include/x86_64-linux-gnu/bits/wchar.h \
+  /usr/include/x86_64-linux-gnu/bits/wchar2-decl.h \
+  /usr/include/x86_64-linux-gnu/bits/wchar2.h \
   /usr/include/x86_64-linux-gnu/bits/wctype-wchar.h \
   /usr/include/x86_64-linux-gnu/bits/wordsize.h \
   /usr/include/x86_64-linux-gnu/bits/xopen_lim.h \
@@ -1120,13 +1133,22 @@ CMakeFiles/QuantumProject.dir/src/main.cpp.o: /home/comel/Bose-Hubbard-Phase-Tra
   /usr/include/x86_64-linux-gnu/bits/pthreadtypes-arch.h \
   /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h \
   /usr/include/x86_64-linux-gnu/bits/sched.h \
+  /usr/include/x86_64-linux-gnu/bits/select-decl.h \
   /usr/include/x86_64-linux-gnu/bits/select.h \
+  /usr/include/x86_64-linux-gnu/bits/select2.h \
   /usr/include/x86_64-linux-gnu/bits/setjmp.h \
   /usr/include/x86_64-linux-gnu/bits/stdint-intn.h \
   /usr/include/x86_64-linux-gnu/bits/stdint-least.h \
   /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h \
+  /usr/include/x86_64-linux-gnu/bits/stdio.h \
+  /usr/include/x86_64-linux-gnu/bits/stdio2-decl.h \
+  /usr/include/x86_64-linux-gnu/bits/stdio2.h \
   /usr/include/x86_64-linux-gnu/bits/stdio_lim.h \
+  /usr/include/x86_64-linux-gnu/bits/stdlib-bsearch.h \
   /usr/include/x86_64-linux-gnu/bits/stdlib-float.h \
+  /usr/include/x86_64-linux-gnu/bits/stdlib.h \
+  /usr/include/x86_64-linux-gnu/bits/string_fortified.h \
+  /usr/include/x86_64-linux-gnu/bits/strings_fortified.h \
   /usr/include/x86_64-linux-gnu/bits/struct_mutex.h \
   /usr/include/x86_64-linux-gnu/bits/struct_rwlock.h \
   /usr/include/x86_64-linux-gnu/bits/syscall.h \
@@ -1163,10 +1185,14 @@ CMakeFiles/QuantumProject.dir/src/main.cpp.o: /home/comel/Bose-Hubbard-Phase-Tra
   /usr/include/x86_64-linux-gnu/bits/typesizes.h \
   /usr/include/x86_64-linux-gnu/bits/uintn-identity.h \
   /usr/include/x86_64-linux-gnu/bits/uio_lim.h \
+  /usr/include/x86_64-linux-gnu/bits/unistd-decl.h \
+  /usr/include/x86_64-linux-gnu/bits/unistd.h \
   /usr/include/x86_64-linux-gnu/bits/unistd_ext.h \
   /usr/include/x86_64-linux-gnu/bits/waitflags.h \
   /usr/include/x86_64-linux-gnu/bits/waitstatus.h \
   /usr/include/x86_64-linux-gnu/bits/wchar.h \
+  /usr/include/x86_64-linux-gnu/bits/wchar2-decl.h \
+  /usr/include/x86_64-linux-gnu/bits/wchar2.h \
   /usr/include/x86_64-linux-gnu/bits/wctype-wchar.h \
   /usr/include/x86_64-linux-gnu/bits/wordsize.h \
   /usr/include/x86_64-linux-gnu/bits/xopen_lim.h \
@@ -1429,10 +1455,17 @@ CMakeFiles/QuantumProject.dir/src/neighbours.cpp.o: /home/comel/Bose-Hubbard-Pha
   /usr/include/x86_64-linux-gnu/bits/mathcalls.h \
   /usr/include/x86_64-linux-gnu/bits/pthreadtypes-arch.h \
   /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h \
+  /usr/include/x86_64-linux-gnu/bits/select-decl.h \
   /usr/include/x86_64-linux-gnu/bits/select.h \
+  /usr/include/x86_64-linux-gnu/bits/select2.h \
   /usr/include/x86_64-linux-gnu/bits/stdint-intn.h \
+  /usr/include/x86_64-linux-gnu/bits/stdio.h \
+  /usr/include/x86_64-linux-gnu/bits/stdio2-decl.h \
+  /usr/include/x86_64-linux-gnu/bits/stdio2.h \
   /usr/include/x86_64-linux-gnu/bits/stdio_lim.h \
+  /usr/include/x86_64-linux-gnu/bits/stdlib-bsearch.h \
   /usr/include/x86_64-linux-gnu/bits/stdlib-float.h \
+  /usr/include/x86_64-linux-gnu/bits/stdlib.h \
   /usr/include/x86_64-linux-gnu/bits/struct_mutex.h \
   /usr/include/x86_64-linux-gnu/bits/struct_rwlock.h \
   /usr/include/x86_64-linux-gnu/bits/thread-shared-types.h \
@@ -1464,6 +1497,8 @@ CMakeFiles/QuantumProject.dir/src/neighbours.cpp.o: /home/comel/Bose-Hubbard-Pha
   /usr/include/x86_64-linux-gnu/bits/waitflags.h \
   /usr/include/x86_64-linux-gnu/bits/waitstatus.h \
   /usr/include/x86_64-linux-gnu/bits/wchar.h \
+  /usr/include/x86_64-linux-gnu/bits/wchar2-decl.h \
+  /usr/include/x86_64-linux-gnu/bits/wchar2.h \
   /usr/include/x86_64-linux-gnu/bits/wordsize.h \
   /usr/include/x86_64-linux-gnu/c++/13/bits/c++allocator.h \
   /usr/include/x86_64-linux-gnu/c++/13/bits/c++config.h \
@@ -1947,13 +1982,22 @@ CMakeFiles/QuantumProject.dir/src/operator.cpp.o: /home/comel/Bose-Hubbard-Phase
   /usr/include/x86_64-linux-gnu/bits/pthreadtypes-arch.h \
   /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h \
   /usr/include/x86_64-linux-gnu/bits/sched.h \
+  /usr/include/x86_64-linux-gnu/bits/select-decl.h \
   /usr/include/x86_64-linux-gnu/bits/select.h \
+  /usr/include/x86_64-linux-gnu/bits/select2.h \
   /usr/include/x86_64-linux-gnu/bits/setjmp.h \
   /usr/include/x86_64-linux-gnu/bits/stdint-intn.h \
   /usr/include/x86_64-linux-gnu/bits/stdint-least.h \
   /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h \
+  /usr/include/x86_64-linux-gnu/bits/stdio.h \
+  /usr/include/x86_64-linux-gnu/bits/stdio2-decl.h \
+  /usr/include/x86_64-linux-gnu/bits/stdio2.h \
   /usr/include/x86_64-linux-gnu/bits/stdio_lim.h \
+  /usr/include/x86_64-linux-gnu/bits/stdlib-bsearch.h \
   /usr/include/x86_64-linux-gnu/bits/stdlib-float.h \
+  /usr/include/x86_64-linux-gnu/bits/stdlib.h \
+  /usr/include/x86_64-linux-gnu/bits/string_fortified.h \
+  /usr/include/x86_64-linux-gnu/bits/strings_fortified.h \
   /usr/include/x86_64-linux-gnu/bits/struct_mutex.h \
   /usr/include/x86_64-linux-gnu/bits/struct_rwlock.h \
   /usr/include/x86_64-linux-gnu/bits/syscall.h \
@@ -1990,10 +2034,14 @@ CMakeFiles/QuantumProject.dir/src/operator.cpp.o: /home/comel/Bose-Hubbard-Phase
   /usr/include/x86_64-linux-gnu/bits/typesizes.h \
   /usr/include/x86_64-linux-gnu/bits/uintn-identity.h \
   /usr/include/x86_64-linux-gnu/bits/uio_lim.h \
+  /usr/include/x86_64-linux-gnu/bits/unistd-decl.h \
+  /usr/include/x86_64-linux-gnu/bits/unistd.h \
   /usr/include/x86_64-linux-gnu/bits/unistd_ext.h \
   /usr/include/x86_64-linux-gnu/bits/waitflags.h \
   /usr/include/x86_64-linux-gnu/bits/waitstatus.h \
   /usr/include/x86_64-linux-gnu/bits/wchar.h \
+  /usr/include/x86_64-linux-gnu/bits/wchar2-decl.h \
+  /usr/include/x86_64-linux-gnu/bits/wchar2.h \
   /usr/include/x86_64-linux-gnu/bits/wctype-wchar.h \
   /usr/include/x86_64-linux-gnu/bits/wordsize.h \
   /usr/include/x86_64-linux-gnu/bits/xopen_lim.h \
@@ -2257,6 +2305,20 @@ CMakeFiles/QuantumProject.dir/src/operator.cpp.o: /home/comel/Bose-Hubbard-Phase
 
 /usr/lib/gcc/x86_64-linux-gnu/13/include/avxintrin.h:
 
+/usr/lib/gcc/x86_64-linux-gnu/13/include/avx512vp2intersectvlintrin.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/13/include/avx512vp2intersectintrin.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/13/include/avx512vnniintrin.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/13/include/avx512vlintrin.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/13/include/avx512vldqintrin.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/13/include/avx512vlbwintrin.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/13/include/avx512vbmi2intrin.h:
+
 /usr/include/c++/13/bits/hashtable.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/error_t.h:
@@ -2276,8 +2338,6 @@ CMakeFiles/QuantumProject.dir/src/operator.cpp.o: /home/comel/Bose-Hubbard-Phase
 /usr/include/c++/13/bits/char_traits.h:
 
 /usr/include/c++/13/bits/std_function.h:
-
-/usr/include/x86_64-linux-gnu/c++/13/bits/ctype_inline.h:
 
 /usr/include/c++/13/bits/exception_defines.h:
 
@@ -2306,8 +2366,6 @@ CMakeFiles/QuantumProject.dir/src/operator.cpp.o: /home/comel/Bose-Hubbard-Phase
 /usr/include/c++/13/algorithm:
 
 /usr/include/c++/13/bits/hash_bytes.h:
-
-/usr/lib/gcc/x86_64-linux-gnu/13/include/avx512vnniintrin.h:
 
 /usr/lib/gcc/x86_64-linux-gnu/13/include/ia32intrin.h:
 
@@ -2365,8 +2423,6 @@ CMakeFiles/QuantumProject.dir/src/operator.cpp.o: /home/comel/Bose-Hubbard-Phase
 
 /home/comel/Bose-Hubbard-Phase-Transition/include/Eigen/src/SVD/UpperBidiagonalization.h:
 
-/usr/lib/gcc/x86_64-linux-gnu/13/include/avx512vldqintrin.h:
-
 /home/comel/Bose-Hubbard-Phase-Transition/include/Eigen/src/LU/arch/InverseSize4.h:
 
 /home/comel/Bose-Hubbard-Phase-Transition/include/Eigen/src/LU/PartialPivLU.h:
@@ -2411,11 +2467,11 @@ CMakeFiles/QuantumProject.dir/src/operator.cpp.o: /home/comel/Bose-Hubbard-Phase
 
 /home/comel/Bose-Hubbard-Phase-Transition/include/Eigen/src/Eigenvalues/RealSchur.h:
 
+/usr/include/x86_64-linux-gnu/bits/strings_fortified.h:
+
 /home/comel/Bose-Hubbard-Phase-Transition/include/Eigen/src/plugins/CommonCwiseUnaryOps.h:
 
 /usr/include/c++/13/pstl/execution_defs.h:
-
-/home/comel/Bose-Hubbard-Phase-Transition/include/Eigen/src/Core/util/Meta.h:
 
 /home/comel/Bose-Hubbard-Phase-Transition/include/Eigen/src/SparseCore/CompressedStorage.h:
 
@@ -2440,6 +2496,10 @@ CMakeFiles/QuantumProject.dir/src/operator.cpp.o: /home/comel/Bose-Hubbard-Phase
 /home/comel/Bose-Hubbard-Phase-Transition/include/Eigen/src/Core/util/DisableStupidWarnings.h:
 
 /home/comel/Bose-Hubbard-Phase-Transition/include/Eigen/src/Core/util/Constants.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/13/include/avx512vbmi2vlintrin.h:
+
+/home/comel/Bose-Hubbard-Phase-Transition/include/Eigen/src/Geometry/Umeyama.h:
 
 /home/comel/Bose-Hubbard-Phase-Transition/include/Eigen/src/Core/products/TriangularSolverMatrix.h:
 
@@ -2489,6 +2549,10 @@ CMakeFiles/QuantumProject.dir/src/operator.cpp.o: /home/comel/Bose-Hubbard-Phase
 
 /usr/include/c++/13/bits/stl_pair.h:
 
+/usr/lib/gcc/x86_64-linux-gnu/13/include/avx512pfintrin.h:
+
+/home/comel/Bose-Hubbard-Phase-Transition/include/Eigen/src/Core/CwiseUnaryView.h:
+
 /usr/include/c++/13/fstream:
 
 /home/comel/Bose-Hubbard-Phase-Transition/include/Eigen/src/Core/GenericPacketMath.h:
@@ -2496,10 +2560,6 @@ CMakeFiles/QuantumProject.dir/src/operator.cpp.o: /home/comel/Bose-Hubbard-Phase
 /usr/include/c++/13/bits/allocated_ptr.h:
 
 /home/comel/Bose-Hubbard-Phase-Transition/include/Eigen/Core:
-
-/home/comel/Bose-Hubbard-Phase-Transition/include/Eigen/src/Geometry/Umeyama.h:
-
-/usr/lib/gcc/x86_64-linux-gnu/13/include/avx512vbmi2vlintrin.h:
 
 /home/comel/Bose-Hubbard-Phase-Transition/external/spectra/include/Spectra/GenEigsBase.h:
 
@@ -2590,8 +2650,6 @@ CMakeFiles/QuantumProject.dir/src/operator.cpp.o: /home/comel/Bose-Hubbard-Phase
 /home/comel/Bose-Hubbard-Phase-Transition/include/Eigen/src/Core/products/TriangularMatrixMatrix.h:
 
 /home/comel/Bose-Hubbard-Phase-Transition/include/Eigen/src/plugins/MatrixCwiseUnaryOps.h:
-
-/home/comel/Bose-Hubbard-Phase-Transition/include/Eigen/src/Core/CwiseTernaryOp.h:
 
 /home/comel/Bose-Hubbard-Phase-Transition/include/Eigen/src/Core/util/ReshapedHelper.h:
 
@@ -2695,8 +2753,6 @@ CMakeFiles/QuantumProject.dir/src/operator.cpp.o: /home/comel/Bose-Hubbard-Phase
 
 /home/comel/Bose-Hubbard-Phase-Transition/include/Eigen/src/plugins/IndexedViewMethods.h:
 
-/usr/lib/gcc/x86_64-linux-gnu/13/include/avx512vp2intersectintrin.h:
-
 /home/comel/Bose-Hubbard-Phase-Transition/include/Eigen/src/Core/CwiseBinaryOp.h:
 
 /home/comel/Bose-Hubbard-Phase-Transition/include/Eigen/src/Core/arch/SSE/PacketMath.h:
@@ -2791,8 +2847,6 @@ CMakeFiles/QuantumProject.dir/src/operator.cpp.o: /home/comel/Bose-Hubbard-Phase
 
 /usr/include/c++/13/bits/stl_iterator_base_funcs.h:
 
-/usr/lib/gcc/x86_64-linux-gnu/13/include/avx512vp2intersectvlintrin.h:
-
 /home/comel/Bose-Hubbard-Phase-Transition/include/Eigen/src/Core/Replicate.h:
 
 /usr/include/c++/13/bits/predefined_ops.h:
@@ -2845,6 +2899,12 @@ CMakeFiles/QuantumProject.dir/src/operator.cpp.o: /home/comel/Bose-Hubbard-Phase
 
 /usr/include/c++/13/bits/stl_algobase.h:
 
+/usr/include/c++/13/bits/codecvt.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/13/include/avx512vpopcntdqintrin.h:
+
+/home/comel/Bose-Hubbard-Phase-Transition/src/hamiltonian.cpp:
+
 /home/comel/Bose-Hubbard-Phase-Transition/include/Eigen/src/Core/Visitor.h:
 
 /usr/include/c++/13/cstring:
@@ -2860,6 +2920,12 @@ CMakeFiles/QuantumProject.dir/src/operator.cpp.o: /home/comel/Bose-Hubbard-Phase
 /home/comel/Bose-Hubbard-Phase-Transition/include/hamiltonian.h:
 
 /home/comel/Bose-Hubbard-Phase-Transition/include/Eigen/src/Core/arch/AVX512/PacketMath.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/13/include/mwaitintrin.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/13/include/avx512vnnivlintrin.h:
+
+/usr/include/c++/13/bits/vector.tcc:
 
 /home/comel/Bose-Hubbard-Phase-Transition/include/Eigen/src/Core/arch/Default/BFloat16.h:
 
@@ -2890,6 +2956,10 @@ CMakeFiles/QuantumProject.dir/src/operator.cpp.o: /home/comel/Bose-Hubbard-Phase
 /home/comel/Bose-Hubbard-Phase-Transition/include/Eigen/src/Core/arch/SSE/TypeCasting.h:
 
 /home/comel/Bose-Hubbard-Phase-Transition/include/Eigen/src/Core/functors/BinaryFunctors.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/13/include/avx512vbmivlintrin.h:
+
+/home/comel/Bose-Hubbard-Phase-Transition/include/Eigen/src/Core/functors/TernaryFunctors.h:
 
 /home/comel/Bose-Hubbard-Phase-Transition/include/Eigen/src/Core/MathFunctions.h:
 
@@ -2949,8 +3019,6 @@ CMakeFiles/QuantumProject.dir/src/operator.cpp.o: /home/comel/Bose-Hubbard-Phase
 
 /usr/include/c++/13/bits/locale_facets.h:
 
-/usr/lib/gcc/x86_64-linux-gnu/13/include/avx512vlbwintrin.h:
-
 /usr/include/c++/13/bits/locale_facets.tcc:
 
 /home/comel/Bose-Hubbard-Phase-Transition/include/Eigen/src/QR/HouseholderQR.h:
@@ -2977,15 +3045,13 @@ CMakeFiles/QuantumProject.dir/src/operator.cpp.o: /home/comel/Bose-Hubbard-Phase
 
 /usr/include/c++/13/bits/ptr_traits.h:
 
+/usr/include/x86_64-linux-gnu/bits/stdio2-decl.h:
+
 /usr/include/c++/13/bits/ranges_algobase.h:
 
 /usr/include/c++/13/bits/ranges_base.h:
 
 /usr/include/c++/13/tr1/modified_bessel_func.tcc:
-
-/home/comel/Bose-Hubbard-Phase-Transition/include/Eigen/src/Core/CwiseUnaryView.h:
-
-/usr/lib/gcc/x86_64-linux-gnu/13/include/avx512pfintrin.h:
 
 /home/comel/Bose-Hubbard-Phase-Transition/include/Eigen/src/Core/arch/AVX512/TypeCasting.h:
 
@@ -3002,8 +3068,6 @@ CMakeFiles/QuantumProject.dir/src/operator.cpp.o: /home/comel/Bose-Hubbard-Phase
 /home/comel/Bose-Hubbard-Phase-Transition/include/Eigen/src/Geometry/Translation.h:
 
 /usr/include/c++/13/bits/std_mutex.h:
-
-/usr/lib/gcc/x86_64-linux-gnu/13/include/avx512vbmiintrin.h:
 
 /usr/include/c++/13/bits/stl_construct.h:
 
@@ -3063,7 +3127,7 @@ CMakeFiles/QuantumProject.dir/src/operator.cpp.o: /home/comel/Bose-Hubbard-Phase
 
 /usr/include/c++/13/cmath:
 
-/usr/lib/gcc/x86_64-linux-gnu/13/include/avx512vlintrin.h:
+/usr/include/x86_64-linux-gnu/bits/select2.h:
 
 /usr/include/c++/13/compare:
 
@@ -3091,6 +3155,8 @@ CMakeFiles/QuantumProject.dir/src/operator.cpp.o: /home/comel/Bose-Hubbard-Phase
 
 /usr/include/c++/13/debug/debug.h:
 
+/usr/include/x86_64-linux-gnu/bits/wchar2-decl.h:
+
 /usr/include/c++/13/bits/std_abs.h:
 
 /usr/include/linux/errno.h:
@@ -3112,8 +3178,6 @@ CMakeFiles/QuantumProject.dir/src/operator.cpp.o: /home/comel/Bose-Hubbard-Phase
 /usr/lib/gcc/x86_64-linux-gnu/13/include/avx512ifmaintrin.h:
 
 /usr/include/c++/13/functional:
-
-/usr/include/c++/13/initializer_list:
 
 /usr/lib/gcc/x86_64-linux-gnu/13/include/mmintrin.h:
 
@@ -3171,8 +3235,6 @@ CMakeFiles/QuantumProject.dir/src/operator.cpp.o: /home/comel/Bose-Hubbard-Phase
 
 /usr/include/c++/13/tr1/legendre_function.tcc:
 
-/usr/lib/gcc/x86_64-linux-gnu/13/include/avx512vbmi2intrin.h:
-
 /usr/include/c++/13/tr1/special_function_util.h:
 
 /usr/include/c++/13/tr1/poly_laguerre.tcc:
@@ -3180,10 +3242,6 @@ CMakeFiles/QuantumProject.dir/src/operator.cpp.o: /home/comel/Bose-Hubbard-Phase
 /home/comel/Bose-Hubbard-Phase-Transition/include/Eigen/src/Core/arch/Default/GenericPacketMathFunctions.h:
 
 /usr/include/c++/13/tr1/riemann_zeta.tcc:
-
-/home/comel/Bose-Hubbard-Phase-Transition/include/Eigen/src/SparseCore/SparseRef.h:
-
-/usr/include/x86_64-linux-gnu/asm/unistd.h:
 
 /usr/include/c++/13/vector:
 
@@ -3202,12 +3260,6 @@ CMakeFiles/QuantumProject.dir/src/operator.cpp.o: /home/comel/Bose-Hubbard-Phase
 /usr/include/linux/limits.h:
 
 /usr/include/locale.h:
-
-/usr/include/c++/13/bits/codecvt.h:
-
-/home/comel/Bose-Hubbard-Phase-Transition/src/hamiltonian.cpp:
-
-/usr/lib/gcc/x86_64-linux-gnu/13/include/avx512vpopcntdqintrin.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/__FILE.h:
 
@@ -3269,9 +3321,9 @@ CMakeFiles/QuantumProject.dir/src/operator.cpp.o: /home/comel/Bose-Hubbard-Phase
 
 /usr/include/x86_64-linux-gnu/bits/fp-logb.h:
 
-/usr/include/c++/13/bits/stl_vector.h:
+/usr/lib/gcc/x86_64-linux-gnu/13/include/avx512vbmiintrin.h:
 
-/usr/include/x86_64-linux-gnu/bits/getopt_core.h:
+/usr/include/x86_64-linux-gnu/bits/wchar2.h:
 
 /usr/lib/gcc/x86_64-linux-gnu/13/include/avx512bwintrin.h:
 
@@ -3282,6 +3334,8 @@ CMakeFiles/QuantumProject.dir/src/operator.cpp.o: /home/comel/Bose-Hubbard-Phase
 /usr/include/x86_64-linux-gnu/bits/math-vector.h:
 
 /usr/include/x86_64-linux-gnu/bits/mathcalls-helper-functions.h:
+
+/usr/include/x86_64-linux-gnu/bits/stdlib-bsearch.h:
 
 /usr/include/x86_64-linux-gnu/bits/mathcalls-narrow.h:
 
@@ -3301,6 +3355,10 @@ CMakeFiles/QuantumProject.dir/src/operator.cpp.o: /home/comel/Bose-Hubbard-Phase
 
 /usr/include/x86_64-linux-gnu/bits/sched.h:
 
+/usr/include/x86_64-linux-gnu/c++/13/bits/ctype_inline.h:
+
+/usr/include/x86_64-linux-gnu/bits/select-decl.h:
+
 /home/comel/Bose-Hubbard-Phase-Transition/include/Eigen/src/Core/util/BlasUtil.h:
 
 /usr/include/x86_64-linux-gnu/c++/13/bits/gthr-default.h:
@@ -3309,11 +3367,35 @@ CMakeFiles/QuantumProject.dir/src/operator.cpp.o: /home/comel/Bose-Hubbard-Phase
 
 /usr/include/x86_64-linux-gnu/bits/time.h:
 
+/home/comel/Bose-Hubbard-Phase-Transition/include/Eigen/src/SparseCore/SparseRef.h:
+
+/usr/include/x86_64-linux-gnu/asm/unistd.h:
+
+/usr/include/x86_64-linux-gnu/bits/stdio.h:
+
+/home/comel/Bose-Hubbard-Phase-Transition/include/Eigen/src/Core/CwiseTernaryOp.h:
+
+/usr/include/x86_64-linux-gnu/bits/stdio2.h:
+
 /usr/include/c++/13/bits/locale_conv.h:
 
 /usr/include/x86_64-linux-gnu/bits/stdio_lim.h:
 
 /usr/include/x86_64-linux-gnu/bits/timex.h:
+
+/usr/include/c++/13/bits/stl_vector.h:
+
+/usr/include/x86_64-linux-gnu/bits/getopt_core.h:
+
+/usr/include/x86_64-linux-gnu/bits/stdlib.h:
+
+/usr/include/c++/13/initializer_list:
+
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/13/include/clflushoptintrin.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/13/include/avx2intrin.h:
 
 /usr/include/x86_64-linux-gnu/c++/13/bits/c++io.h:
 
@@ -3361,6 +3443,12 @@ CMakeFiles/QuantumProject.dir/src/operator.cpp.o: /home/comel/Bose-Hubbard-Phase
 
 /usr/include/x86_64-linux-gnu/bits/typesizes.h:
 
+/usr/include/x86_64-linux-gnu/bits/unistd-decl.h:
+
+/home/comel/Bose-Hubbard-Phase-Transition/include/Eigen/src/Core/util/Meta.h:
+
+/usr/include/x86_64-linux-gnu/bits/unistd.h:
+
 /home/comel/Bose-Hubbard-Phase-Transition/external/spectra/include/Spectra/LinAlg/DoubleShiftQR.h:
 
 /home/comel/Bose-Hubbard-Phase-Transition/include/Eigen/src/Core/Array.h:
@@ -3401,10 +3489,6 @@ CMakeFiles/QuantumProject.dir/src/operator.cpp.o: /home/comel/Bose-Hubbard-Phase
 
 /usr/include/x86_64-linux-gnu/gnu/stubs.h:
 
-/home/comel/Bose-Hubbard-Phase-Transition/include/Eigen/src/Core/functors/TernaryFunctors.h:
-
-/usr/lib/gcc/x86_64-linux-gnu/13/include/avx512vbmivlintrin.h:
-
 /usr/include/x86_64-linux-gnu/sys/cdefs.h:
 
 /usr/include/x86_64-linux-gnu/sys/single_threaded.h:
@@ -3423,10 +3507,6 @@ CMakeFiles/QuantumProject.dir/src/operator.cpp.o: /home/comel/Bose-Hubbard-Phase
 
 /usr/lib/gcc/x86_64-linux-gnu/13/include/amxtileintrin.h:
 
-/usr/lib/gcc/x86_64-linux-gnu/13/include/clflushoptintrin.h:
-
-/usr/lib/gcc/x86_64-linux-gnu/13/include/avx2intrin.h:
-
 /usr/lib/gcc/x86_64-linux-gnu/13/include/avx5124fmapsintrin.h:
 
 /usr/include/c++/13/bits/shared_ptr_base.h:
@@ -3436,9 +3516,3 @@ CMakeFiles/QuantumProject.dir/src/operator.cpp.o: /home/comel/Bose-Hubbard-Phase
 /usr/lib/gcc/x86_64-linux-gnu/13/include/avx512bitalgintrin.h:
 
 /usr/lib/gcc/x86_64-linux-gnu/13/include/avx512dqintrin.h:
-
-/usr/lib/gcc/x86_64-linux-gnu/13/include/mwaitintrin.h:
-
-/usr/include/c++/13/bits/vector.tcc:
-
-/usr/lib/gcc/x86_64-linux-gnu/13/include/avx512vnnivlintrin.h:

@@ -8,9 +8,15 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 
+# ======== Optimization ========
+# Enable compiler optimizations
+if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3 -march=native -ffast-math -Wno-maybe-uninitialized")
+endif()
+
+
 # ======== Dependencies ========
 include_directories(${CMAKE_SOURCE_DIR}/include)  # include the header files
-
 include_directories(${CMAKE_SOURCE_DIR}/external/spectra/include)
 
 
@@ -40,6 +46,7 @@ include_directories(${CMAKE_SOURCE_DIR}/external/spectra/include)
 #qt_add_executable(project main.cpp)
 #target_link_libraries(${PROJECT_NAME} Qt5::Core Qt5::Gui Qt5::Widgets)
 
+
 # ======== Build ========
 file(GLOB_RECURSE SRC_FILES src/*.cpp)
 
@@ -50,7 +57,3 @@ add_compile_options(-Wall -Wextra -Wunused-variable)
 target_compile_options(${PROJECT_NAME} PRIVATE -Wall -march=native)
 
 
-# During the linking process, the linker combines object files (machine code, 
-# but the references, variables, ... have not been dealt with yet) from 
-# our source code with object files from the ARPACK and LAPACK libraries to 
-# create the final executable. 
