@@ -104,10 +104,10 @@ public:
      * 
      * @param nb_eigen The number of eigenvalues to calculate.
      * @param eigenvectors An empty matrix to store the eigenvectors.
-     * @return Eigen::Matrix<double> The vector of eigenvalues.
+     * @return Eigen::Matrix<std::complex<double>> The vector of eigenvalues.
      * @warning Ensure that nb_eigen is greater than 1.
      */
-    Eigen::VectorXcd IRLM_eigen(int nb_eigen) const;
+    Eigen::VectorXcd IRLM_eigen(int nb_eigen, Eigen::MatrixXcd& eigenvectors) const;
 
     /**
     * @brief Calculate the approximate eigenvalues and eigenvectors of the Hamiltonian using the Full Orthogonalization Lanczos Method.

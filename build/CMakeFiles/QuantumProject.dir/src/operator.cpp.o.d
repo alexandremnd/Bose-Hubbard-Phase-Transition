@@ -591,4 +591,5 @@ CMakeFiles/QuantumProject.dir/src/operator.cpp.o: \
  /home/comel/Bose-Hubbard-Phase-Transition/external/spectra/include/Spectra/LinAlg/DoubleShiftQR.h \
  /home/comel/Bose-Hubbard-Phase-Transition/external/spectra/include/Spectra/MatOp/DenseGenMatProd.h \
  /home/comel/Bose-Hubbard-Phase-Transition/external/spectra/include/Spectra/MatOp/SparseGenMatProd.h \
- /home/comel/Bose-Hubbard-Phase-Transition/include/operator.h
+ /home/comel/Bose-Hubbard-Phase-Transition/include/operator.h \
+ /home/comel/Bose-Hubbard-Phase-Transition/include/Eigen/src/Core/Matrix.h

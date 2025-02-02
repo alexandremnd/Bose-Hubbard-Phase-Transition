@@ -8,6 +8,7 @@
 #include <Spectra/MatOp/SparseGenMatProd.h>
 
 #include "operator.h"
+#include "Eigen/src/Core/Matrix.h"
 
 using namespace Spectra;
 
@@ -86,7 +87,7 @@ Operator& Operator::operator * (double scalar) {
     /// IMPLICITLY RESTARTED LANCZOS METHOD (IRLM) ///
 
 /* implement the IRLM for a sparse matrix to find the smallest nb_eigen eigenvalues of a sparse matrix */
-Eigen::VectorXcd Operator::IRLM_eigen(int nb_eigen) const {
+Eigen::VectorXcd Operator::IRLM_eigen(int nb_eigen, Eigen::MatrixXcd& eigenvectors) const {
     SparseGenMatProd<double> op(this->O); // create a compatible matrix object
     GenEigsSolver<SparseGenMatProd<double>> eigs(op, nb_eigen, 2 * nb_eigen+1); // create an eigen solver object
     eigs.init(); 
@@ -95,6 +96,7 @@ Eigen::VectorXcd Operator::IRLM_eigen(int nb_eigen) const {
         throw std::runtime_error("Eigenvalue computation failed.");
     }
     Eigen::VectorXcd eigenvalues = eigs.eigenvalues(); // eigenvalues of the hamiltonian
+    eigenvectors = eigs.eigenvectors(); // eigenvectors of the hamiltonian
     return eigenvalues;
 }
 
@@ -181,8 +183,9 @@ double Operator::order_parameter(const Eigen::VectorXd& eigenvalues, const Eigen
 // TODO: Implement the energy gap ratio calculation
 /* Calculate the energy gap ratio of the system */
 double Operator::gap_ratio() {
-    double E0 = std::real(this->IRLM_eigen(2)[0]); // ground state energy
-    double E1 = std::real(this->IRLM_eigen(2)[1]); // first excited state energy
+    [[maybe_unused]] Eigen::MatrixXcd eigenvectors;
+    double E0 = std::real(this->IRLM_eigen(2, eigenvectors)[0]); // ground state energy
+    double E1 = std::real(this->IRLM_eigen(2, eigenvectors)[1]); // first excited state energy
     return (E1 - E0) / (E1 + E0);
 }
 
@@ -226,9 +229,10 @@ void Operator::canonical_density_matrix(const Eigen::VectorXd& eigenvalues, doub
 //TODO : A OPTIMISER
 /* Calculate the mean boson density of the system */
 double Operator::boson_density(double dmu, int n) {
-    std::complex<double> E0 = this->IRLM_eigen(1)[0]; // ground state energy at mu
+    [[maybe_unused]] Eigen::MatrixXcd eigenvectors;
+    std::complex<double> E0 = this->IRLM_eigen(1, eigenvectors)[0]; // ground state energy at mu
     *this = *this + Operator::Identity(D) * dmu* n;
-    std::complex<double> E1 = this->IRLM_eigen(1)[0]; // ground state energy at mu + dmu
+    std::complex<double> E1 = this->IRLM_eigen(1, eigenvectors)[0]; // ground state energy at mu + dmu
     *this = *this + Operator::Identity(D) * (-dmu * n);
     return -(std::real(E1) - std::real(E0)) / dmu;
 }
