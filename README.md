@@ -21,6 +21,7 @@ This repository contains the implementation of the Bose-Hubbard model, which des
 - [Eigen](https://eigen.tuxfamily.org/dox/GettingStarted.html): A C++ template library for linear algebra.
 - [Spectra](https://spectralib.org/): A header-only C++ library for large scale eigenvalue problems.
 - [Doxygen](http://www.doxygen.nl/): A tool for generating documentation from annotated C++ sources.
+- [TkInter](https://docs.python.org/3/library/tkinter.html): A standard GUI toolkit for Python (required for viewing plots).
   
 ## Building the Project (Linux)
 
@@ -45,7 +46,7 @@ To build the project on a Linux system, follow these steps:
 
 4. Build the project:
     ```sh
-    make
+    cmake --build .
     ```
 
 ## Generating Documentation (Linux)
