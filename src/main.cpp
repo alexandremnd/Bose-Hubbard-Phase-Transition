@@ -122,10 +122,23 @@ int main(int argc, char *argv[]) {
 	const std::vector<std::vector<int>>& nei = neighbours.getNeighbours();
 
     // PLOT OF THE PHASE TRANSITION
-    double dmu = 0.05;
+    double dmu = 0.05 * std::min({J > 0 ? J : std::numeric_limits<double>::max(),
+                                  U > 0 ? U : std::numeric_limits<double>::max(),
+                                  mu > 0 ? mu : std::numeric_limits<double>::max()});
 
     std::ofstream file("phase.txt");
-    file << fixed_param << std::endl; 
+    file << fixed_param << " "; 
+    if (fixed_param == "J") {
+        file << J << std::endl;
+    } else if (fixed_param == "U") {
+        file << U << std::endl;
+    } else if (fixed_param == "u") {
+        file << mu << std::endl;
+    } else {
+        std::cerr << "Error: Invalid fixed parameter specified.\n";
+        print_usage();
+        return 1;
+    } 
     
     if (fixed_param == "J") {
         for (double U = U_min; U <= U_max; U += s) {
@@ -163,11 +176,7 @@ int main(int argc, char *argv[]) {
                 file << J << " " << U << " " << gap_ratio << " " << boson_density << " " << compressibility << std::endl;
             }
         }
-    } else {
-        std::cerr << "Error: Invalid fixed parameter specified.\n";
-        print_usage();
-        return 1;
-    }
+    } 
     file.close();
 	int result = system("python3 plot.py");
 	if (result != 0) {
