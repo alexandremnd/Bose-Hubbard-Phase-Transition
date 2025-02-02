@@ -25,8 +25,9 @@ void print_usage() {
               << "  -J, --hopping     Hopping parameter\n"
               << "  -U, --interaction On-site interaction\n"
               << "  -u, --potential   Chemical potential\n"
-              << "  -r, --range     Range for chemical potential and interaction\n"
-              << "  -s, --step      Step for chemical potential and interaction\n";
+              << "  -r, --range     Range for varying parameters\n"
+              << "  -s, --step      Step for varying parameters (with s < r)\n"
+              << "  -f --fixed      Fixed parameter (J, U or u) \n";
 }
 
 /**
@@ -45,9 +46,11 @@ void print_usage() {
  * - `-u, --potential`: Chemical potential.
  * - `-r, --range`: Range for chemical potential and interaction.
  * - `-s, --step`: Step for chemical potential and interaction.
+ * - `-f, --fixed`: Fixed parameter (J, U, or u).
  * - `-h, --help`: Display usage information.
  * 
  * @return int Exit status of the program.
+ * @warning s must be smaller than r.
  */
 
 int main(int argc, char *argv[]) {
@@ -56,8 +59,9 @@ int main(int argc, char *argv[]) {
     int m, n;
     double J, U, mu, s, r;
     [[maybe_unused]] double J_min, J_max, mu_min, mu_max, U_min, U_max;
+    std::string fixed_param;
 
-    const char* const short_opts = "m:n:J:U:u:r:s:h";
+    const char* const short_opts = "m:n:J:U:u:r:s:f:h";
     const option long_opts[] = {
         {"sites", required_argument, nullptr, 'm'},
         {"bosons", required_argument, nullptr, 'n'},
@@ -66,6 +70,7 @@ int main(int argc, char *argv[]) {
         {"potential", required_argument, nullptr, 'u'},
         {"range", required_argument, nullptr, 'r'},
         {"step", required_argument, nullptr, 's'},
+        {"fixed", required_argument, nullptr, 'f'},
 		{"help", no_argument, nullptr, 'h'},
         {nullptr, no_argument, nullptr, 0}
     };
@@ -95,6 +100,9 @@ int main(int argc, char *argv[]) {
             case 's':
                 s = std::stod(optarg);
                 break;
+            case 'f':
+                fixed_param = optarg;
+                break;
 			case 'h':
             default:
                 print_usage();
@@ -114,17 +122,51 @@ int main(int argc, char *argv[]) {
 	const std::vector<std::vector<int>>& nei = neighbours.getNeighbours();
 
     // PLOT OF THE PHASE TRANSITION
+    double dmu = 0.05;
+
     std::ofstream file("phase.txt");
-    for (double J = J_min; J <= J_max; J += s) {
+    file << fixed_param << std::endl; 
+    
+    if (fixed_param == "J") {
         for (double U = U_min; U <= U_max; U += s) {
-            BH hmatrix(nei, m, n, J, U, mu);
-            Eigen::SparseMatrix<double> smatrix = hmatrix.getHamiltonian();
-            Operator H(std::move(smatrix));
-            double gap_ratio = H.gap_ratio();
-            double boson_density = H.boson_density(0.05, n);
-            double compressibility = H.compressibility(0.05, n);
-            file << J << " " << U << " " << gap_ratio << " " << boson_density << " " << compressibility << std::endl;
+            for (double mu = mu_min; mu <= mu_max; mu += s) {
+                BH hmatrix(nei, m, n, J, U, mu);
+                Eigen::SparseMatrix<double> smatrix = hmatrix.getHamiltonian();
+                Operator H(std::move(smatrix));
+                double gap_ratio = H.gap_ratio();
+                double boson_density = H.boson_density(dmu, n);
+                double compressibility = H.compressibility(dmu, n);
+                file << U << " " << mu << " " << gap_ratio << " " << boson_density << " " << compressibility << std::endl;
+            }
         }
+    } else if (fixed_param == "U") {
+        for (double J = J_min; J <= J_max; J += s) {
+            for (double mu = mu_min; mu <= mu_max; mu += s) {
+                BH hmatrix(nei, m, n, J, U, mu);
+                Eigen::SparseMatrix<double> smatrix = hmatrix.getHamiltonian();
+                Operator H(std::move(smatrix));
+                double gap_ratio = H.gap_ratio();
+                double boson_density = H.boson_density(dmu, n);
+                double compressibility = H.compressibility(dmu, n);
+                file << J << " " << mu << " " << gap_ratio << " " << boson_density << " " << compressibility << std::endl;
+            }
+        }
+    } else if (fixed_param == "u") {
+        for (double J = J_min; J <= J_max; J += s) {
+            for (double U = U_min; U <= U_max; U += s) {
+                BH hmatrix(nei, m, n, J, U, mu);
+                Eigen::SparseMatrix<double> smatrix = hmatrix.getHamiltonian();
+                Operator H(std::move(smatrix));
+                double gap_ratio = H.gap_ratio();
+                double boson_density = H.boson_density(dmu, n);
+                double compressibility = H.compressibility(dmu, n);
+                file << J << " " << U << " " << gap_ratio << " " << boson_density << " " << compressibility << std::endl;
+            }
+        }
+    } else {
+        std::cerr << "Error: Invalid fixed parameter specified.\n";
+        print_usage();
+        return 1;
     }
     file.close();
 	int result = system("python3 plot.py");

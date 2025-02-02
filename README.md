@@ -116,6 +116,7 @@ Command-line options:
 - `-u, --potential`: Chemical potential.
 - `-r, --range`: Range for chemical potential and interaction.
 - `-s, --step`: Step for chemical potential and interaction.
+- `-f, --fixed`: Fixed parameter (J, U, or u)
 - `-h, --help`: Display usage information.
 
 ### Viewing Plots (Linux)
@@ -126,7 +127,7 @@ sudo apt-get install python3-tk
 
 Make sure you have the required dependencies installed. You can then launch the program by typing for example :
 ```sh
-./QuantumProject -m 5 -n 5 -J 100 -U 0 -u 0 -r 100 -s 5
+./QuantumProject -m 5 -n 5 -J 100 -U 0 -u 0 -r 100 -s 5 -f "J"
 ```
 
 ## Authors
