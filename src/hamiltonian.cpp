@@ -9,7 +9,7 @@
 /////  IMPLEMENTATION OF THE BH CLASS METHODS  /////
 
     
-    /// ELEMENTARY FUNCTIONS ///
+    /* ELEMENTARY FUNCTIONS */
 
 /* Calculate the sum of the elements of a vector between 2 index */
 int BH::sum(const Eigen::VectorXd& state, int index1, int index2) const { 
@@ -21,7 +21,7 @@ int BH::sum(const Eigen::VectorXd& state, int index1, int index2) const {
 }
 
 
-    /// DIMENSION OF THE HILBERT SPACE ///
+    /* DIMENSION OF THE HILBERT SPACE */
 
 /* Calculate the binomial coefficient */
 int BH::binomial(int n, int k) const{
@@ -42,7 +42,7 @@ int BH::dimension(int m, int n) const{
 }
 
 
-    /// INITIALIZE THE HILBERT SPACE BASIS ///
+    /* INITIALIZE THE HILBERT SPACE BASIS */
 
 /* Calculate the next Fock state of the Hilbert space in lexicographic order */
 bool BH::next_lexicographic(Eigen::VectorXd& state, int m, int n) const {
@@ -72,7 +72,7 @@ Eigen::MatrixXd BH::init_lexicographic(int m, int n) const {
 }
 
 
-    /// SORT THE HILBERT SPACE BASIS TO FACILITATE CALCULUS ///
+    /* SORT THE HILBERT SPACE BASIS TO FACILITATE CALCULUS */
 
 /* Calculate the unique tag of the kth column of the matrix */
 double BH::calculate_tag(const Eigen::MatrixXd& basis, const std::vector<int>& primes, int k) const {
@@ -127,7 +127,7 @@ int BH::search_tag(const Eigen::VectorXd& tags, double x) const {
 }
 
 
-    /// FILL THE HAMILTONIAN OF THE SYSTEM ///
+    /* FILL THE HAMILTONIAN OF THE SYSTEM */
 
 /* Fill the hopping term of the Hamiltonian */
 void BH::fill_hopping(const Eigen::MatrixXd& basis, const Eigen::VectorXd& tags, const std::vector<std::vector<int>>& neighbours, const std::vector<int>& primes, Eigen::SparseMatrix<double>& hmatrix, double J) const {
@@ -194,7 +194,7 @@ void BH::fill_chemical(const Eigen::MatrixXd& basis, Eigen::SparseMatrix<double>
 }
 
 
-    /// CONSTRUCTOR ///
+    /* CONSTRUCTOR */
 
 /* Constructor for the Bose-Hubbard model */
 BH::BH(const std::vector<std::vector<int>>& neighbours, int m, int n, double J, double U, double mu) : neighbours(neighbours), m(m), n(n), D(dimension(m,n)), J(J), U(U), mu(mu), H(D,D) {
@@ -215,7 +215,7 @@ BH::BH(const std::vector<std::vector<int>>& neighbours, int m, int n, double J, 
 }
 
 
-    /// UTILITY FUNCTIONS ///
+    /* UTILITY FUNCTIONS */
 
 /* get the Hamiltonian matrix */
 Eigen::SparseMatrix<double> BH::getHamiltonian() const {

@@ -15,12 +15,12 @@ using namespace Spectra;
 // REMARQUE : TROUVER LES FONCTIONS A RECODER AVEC CTRL + F "TODO"
 
 
-    /// CONSTRUCTOR ///
+    /* CONSTRUCTOR */
 
 Operator::Operator(Eigen::SparseMatrix<double>&& smatrix) : O(std::move(smatrix)), D(smatrix.rows()), ref(1e-10) {}
 
 
-    /// UTILITY FUNCTIONS ///
+    /* UTILITY FUNCTIONS */
 
 int Operator::size() const {
 	return D;
@@ -30,7 +30,7 @@ int Operator::size() const {
 ///// BASIS FUNCTIONS /////
 
 
-    /// IDENTITY OPERATOR ///
+    /* IDENTITY OPERATOR */
 
 /* create the operator Identity*/
 Operator Operator::Identity(int size) {
@@ -40,7 +40,7 @@ Operator Operator::Identity(int size) {
 }
 
 
-    /// ADDITION AND MULTIPLICATION ///
+    /* ADDITION AND MULTIPLICATION */
 
 /* add a matrix to an operand of type SparseMatrix with same size */
 Operator& Operator::operator + (const Operator& operand) {
@@ -84,7 +84,7 @@ Operator& Operator::operator * (double scalar) {
 ///// DIAGONALIZATION /////
 
 
-    /// IMPLICITLY RESTARTED LANCZOS METHOD (IRLM) ///
+    /* IMPLICITLY RESTARTED LANCZOS METHOD (IRLM) */
 
 /* implement the IRLM for a sparse matrix to find the smallest nb_eigen eigenvalues of a sparse matrix */
 Eigen::VectorXcd Operator::IRLM_eigen(int nb_eigen, Eigen::MatrixXcd& eigenvectors) const {
@@ -101,7 +101,7 @@ Eigen::VectorXcd Operator::IRLM_eigen(int nb_eigen, Eigen::MatrixXcd& eigenvecto
 }
 
 
-    /// FULL ORTHOGONALIZATION LANCZOS METHOD (FOLM) ///
+    /* FULL ORTHOGONALIZATION LANCZOS METHOD (FOLM) */
 
 /* implement the FOLM for a sparse matrix for nb_iter iterations starting with vector v_0 */
 void Operator::FOLM_diag(int nb_iter, Eigen::VectorXd& v_0, Eigen::MatrixXd& T, Eigen::MatrixXd& V) const {
@@ -154,7 +154,7 @@ Eigen::VectorXd Operator::FOLM_eigen(int nb_iter, Eigen::MatrixXd& eigenvectors)
 }
 
 
-    /// EXACT DIAGONALIZATION ///
+    /* EXACT DIAGONALIZATION */
 
 /* Calculate the exact eigenvalues and eigenvectors of the hamiltonian by an exact diagonalization */
 Eigen::VectorXd Operator::exact_eigen(Eigen::MatrixXd& eigenvectors) const {
@@ -190,7 +190,7 @@ double Operator::gap_ratio() {
 }
 
     
-    /// SPECIFIC CALCULATIONS ///
+    /* SPECIFIC CALCULATIONS */
 
 
 //TODO : A ECRIRE

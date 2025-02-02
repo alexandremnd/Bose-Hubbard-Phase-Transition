@@ -15,7 +15,7 @@ Neighbours::Neighbours(int m) :  m(m), neighbours(m) {}
 Neighbours::~Neighbours() {}
 
 
-    /// 1D ///
+    /* 1D */
 
 /* generate the list of neighbours for a 1D chain */
 void Neighbours::chain_neighbours(bool closed) { // by default closed = true for periodic boundary conditions, closed = false for open boundary conditions
@@ -34,7 +34,7 @@ void Neighbours::chain_neighbours(bool closed) { // by default closed = true for
 }
 
 
-    /// 2D ///
+    /* 2D */
 
 /* generate the list of neighbours for a 2D square lattice */
 void Neighbours::square_neighbours(bool closed) { // by default closed = true for periodic boundary conditions, closed = false for open boundary conditions
@@ -71,7 +71,7 @@ void Neighbours::square_neighbours(bool closed) { // by default closed = true fo
 }
 
 
-    /// 3D /// 
+    /* 3D */ 
     
 /* generate the list of neighbours for a 3D cubic lattice */
 void Neighbours::cube_neighbours(bool closed){ // by default closed = true for periodic boundary conditions, closed = false for open boundary conditions
