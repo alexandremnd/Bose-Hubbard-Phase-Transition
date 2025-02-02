@@ -2,6 +2,8 @@
 
 This repository contains the implementation of the Bose-Hubbard model, which describes interacting bosons on a lattice. The aim of this project is to study the phase transition in the Bose-Hubbard model using various numerical methods.
 
+![Bose-Hubbard Model Diagram](git chain.png)
+
 ## Project Structure
 
 - `include/`: Contains the header files for the project.
