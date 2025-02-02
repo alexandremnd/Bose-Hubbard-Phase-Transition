@@ -184,8 +184,9 @@ double Operator::order_parameter(const Eigen::VectorXd& eigenvalues, const Eigen
 /* Calculate the energy gap ratio of the system */
 double Operator::gap_ratio() {
     [[maybe_unused]] Eigen::MatrixXcd eigenvectors;
-    double E0 = std::real(this->IRLM_eigen(2, eigenvectors)[0]); // ground state energy
-    double E1 = std::real(this->IRLM_eigen(2, eigenvectors)[1]); // first excited state energy
+    int nb_eigen = std::min(20, D/2);
+    double E0 = std::real(this->IRLM_eigen(nb_eigen, eigenvectors)[0]); // ground state energy
+    double E1 = std::real(this->IRLM_eigen(nb_eigen, eigenvectors)[1]); // first excited state energy
     return (E1 - E0) / (E1 + E0);
 }
 
@@ -230,9 +231,10 @@ void Operator::canonical_density_matrix(const Eigen::VectorXd& eigenvalues, doub
 /* Calculate the mean boson density of the system */
 double Operator::boson_density(double dmu, int n) {
     [[maybe_unused]] Eigen::MatrixXcd eigenvectors;
-    std::complex<double> E0 = this->IRLM_eigen(1, eigenvectors)[0]; // ground state energy at mu
+    int nb_eigen = std::min(20, D/2);
+    std::complex<double> E0 = this->IRLM_eigen(nb_eigen, eigenvectors)[0]; // ground state energy at mu
     *this = *this + Operator::Identity(D) * dmu* n;
-    std::complex<double> E1 = this->IRLM_eigen(1, eigenvectors)[0]; // ground state energy at mu + dmu
+    std::complex<double> E1 = this->IRLM_eigen(nb_eigen, eigenvectors)[0]; // ground state energy at mu + dmu
     *this = *this + Operator::Identity(D) * (-dmu * n);
     return -(std::real(E1) - std::real(E0)) / dmu;
 }
