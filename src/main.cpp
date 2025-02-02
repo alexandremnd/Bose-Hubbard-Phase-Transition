@@ -152,8 +152,9 @@ int main(int argc, char *argv[]) {
     // std::cout << "number of calculated eigenvalues : " << eigenvalues1.size() << std::endl << std::endl;
 	
 	// // USING THE IRLM 
+    // Eigen::MatrixXd eigenvectors2;
 	// start = std::chrono::high_resolution_clock::now();
-	// Eigen::VectorXcd eigenvalues2 = H.IRLM_eigen(1); // IRLM
+	// Eigen::VectorXcd eigenvalues2 = H.IRLM_eigen(1, eigenvectors2); // IRLM
 	// end = std::chrono::high_resolution_clock::now();
 	// duration = end - start;
 	// std::cout << "IRLM execution time: " << duration.count() << " seconds" << std::endl;
@@ -169,13 +170,6 @@ int main(int argc, char *argv[]) {
 	// std::cout << "Exact diagonalization execution time: " << duration.count() << " seconds" << std::endl;
     // std::cout << "smallest eigenvalue : " << eigenvalues3.transpose()[0] << std::endl;
     // std::cout << "number of calculated eigenvalues : " << eigenvalues3.size() << std::endl << std::endl;
-
-
-	// int result = system("python3 plot.py");
-	// if (result != 0) {
-	// 	std::cerr << "Error when executing Python script." << std::endl;
-	// 	return 1;
-	// }
 
 
 	/// PHASE TRANSITION CALCULATIONS
