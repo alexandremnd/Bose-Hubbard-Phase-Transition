@@ -24,6 +24,7 @@ This repository contains the implementation of the Bose-Hubbard model, which des
 - [Spectra](https://spectralib.org/): A header-only C++ library for large scale eigenvalue problems.
 - [Doxygen](http://www.doxygen.nl/): A tool for generating documentation from annotated C++ sources.
 - [TkInter](https://docs.python.org/3/library/tkinter.html): A standard GUI toolkit for Python (required for viewing plots).
+- [OpenMP](https://www.openmp.org/): An API for parallel programming in C, C++, and Fortran.
   
 ## Building the Project (Linux)
 

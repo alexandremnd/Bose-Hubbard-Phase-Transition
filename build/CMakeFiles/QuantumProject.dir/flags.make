@@ -6,5 +6,5 @@ CXX_DEFINES =
 
 CXX_INCLUDES = -I/home/comel/Bose-Hubbard-Phase-Transition/include -I/home/comel/Bose-Hubbard-Phase-Transition/external/spectra/include
 
-CXX_FLAGS =  -O3 -march=native -ffast-math -Wno-maybe-uninitialized -std=gnu++20 -Wall -march=native
+CXX_FLAGS =  -O3 -march=native -ffast-math -Wall -Wextra -Wno-maybe-uninitialized -Wunused-variable -std=gnu++20 -Wall -march=native -fopenmp
 

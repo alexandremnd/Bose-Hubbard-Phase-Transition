@@ -140,6 +140,8 @@ QuantumProject: CMakeFiles/QuantumProject.dir/src/main.cpp.o
 QuantumProject: CMakeFiles/QuantumProject.dir/src/neighbours.cpp.o
 QuantumProject: CMakeFiles/QuantumProject.dir/src/operator.cpp.o
 QuantumProject: CMakeFiles/QuantumProject.dir/build.make
+QuantumProject: /usr/lib/gcc/x86_64-linux-gnu/13/libgomp.so
+QuantumProject: /usr/lib/x86_64-linux-gnu/libpthread.a
 QuantumProject: CMakeFiles/QuantumProject.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/comel/Bose-Hubbard-Phase-Transition/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX executable QuantumProject"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/QuantumProject.dir/link.txt --verbose=$(VERBOSE)

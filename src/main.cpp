@@ -8,11 +8,62 @@
 #include <chrono>
 #include <complex>
 #include <getopt.h>
+#include <sys/resource.h>
+#include <sys/sysinfo.h>
+#include <omp.h>
 
 #include "hamiltonian.h"
 #include "operator.h"
 #include "neighbours.h"
 
+
+
+/** 
+ * @brief Get the memory usage of the program in KB and optionally print it.
+ * @param print If true, print the memory usage.
+ * @return The memory usage in KB.
+ */
+long get_memory_usage(bool print = false) {
+    std::ifstream statm_file("/proc/self/statm");
+    long memory_usage = -1;
+
+    if (statm_file.is_open()) {
+        long size, resident, share, text, lib, data, dt;
+        statm_file >> size >> resident >> share >> text >> lib >> data >> dt;
+        memory_usage = resident * (sysconf(_SC_PAGESIZE) / 1024); // Convert pages to KB
+    }
+
+    if (memory_usage == -1) {
+        std::cerr << "Error reading memory usage from /proc/self/statm." << std::endl;
+    } else if (print) {
+        std::cout << "Memory usage: " << memory_usage << " KB" << std::endl;
+    }
+
+    return memory_usage;
+}
+
+
+/**
+ * @brief Get the available memory in KB.
+ */
+long get_available_memory() {
+    struct sysinfo info;
+    if (sysinfo(&info) != 0) {
+        std::cerr << "Error getting system info." << std::endl;
+        return -1;
+    }
+    return info.freeram / 1024;
+}
+
+
+size_t estimateSparseMatrixMemoryUsage(const Eigen::SparseMatrix<double>& matrix) {
+    size_t numNonZeros = matrix.nonZeros();
+    size_t numCols = matrix.cols();
+    size_t memoryUsage = numNonZeros * sizeof(double);
+    memoryUsage += numNonZeros * sizeof(int); 
+    memoryUsage += (numCols + 1) * sizeof(int);
+    return memoryUsage;
+}
 
 /**
  * @brief Print the usage information for the program.
@@ -29,6 +80,7 @@ void print_usage() {
               << "  -s, --step      Step for varying parameters (with s < r)\n"
               << "  -f --fixed      Fixed parameter (J, U or u) \n";
 }
+
 
 /**
  * @brief Main function for the Bose-Hubbard Phase Transition program.
@@ -55,7 +107,10 @@ void print_usage() {
 
 int main(int argc, char *argv[]) {
 
-    /// PARAMETERS OF THE MODEL
+    // // INITIAL MEMORY USAGE
+    // long base_memory = get_memory_usage();
+
+    // PARAMETERS OF THE MODEL
     int m, n;
     double J, U, mu, s, r;
     [[maybe_unused]] double J_min, J_max, mu_min, mu_max, U_min, U_max;
@@ -109,6 +164,7 @@ int main(int argc, char *argv[]) {
                 return 0;
         }
     }
+
     J_min = J;
     J_max = J + r;
 	mu_min = mu;
@@ -116,68 +172,144 @@ int main(int argc, char *argv[]) {
     U_min = U;
     U_max = U + r;
 
-	/// GEOMETRY OF THE LATTICE
+    [[maybe_unused]] double dmu = 0.05 * std::min({J > 0 ? J : std::numeric_limits<double>::max(),
+                                  U > 0 ? U : std::numeric_limits<double>::max(),
+                                  mu > 0 ? mu : std::numeric_limits<double>::max(),
+                                  s > 0 ? s : std::numeric_limits<double>::max()});
+
+
+	// GEOMETRY OF THE LATTICE
 	Neighbours neighbours(m);
 	neighbours.chain_neighbours(); // list of neighbours
 	const std::vector<std::vector<int>>& nei = neighbours.getNeighbours();
 
-    // PLOT OF THE PHASE TRANSITION
-    double dmu = 0.05 * std::min({J > 0 ? J : std::numeric_limits<double>::max(),
-                                  U > 0 ? U : std::numeric_limits<double>::max(),
-                                  mu > 0 ? mu : std::numeric_limits<double>::max()});
 
+    // OPENING THE FILE TO SAVE THE MAP VALUES
     std::ofstream file("phase.txt");
     file << fixed_param << " "; 
     if (fixed_param == "J") {
+        if (J == 0) {
+            std::cerr << "Error: Fixed parameter J cannot be zero.\n";
+            return 1;
+        }
         file << J << std::endl;
     } else if (fixed_param == "U") {
+        if (U == 0) {
+            std::cerr << "Error: Fixed parameter U cannot be zero.\n";
+            return 1;
+        }
         file << U << std::endl;
     } else if (fixed_param == "u") {
+        if (mu == 0) {
+            std::cerr << "Error: Fixed parameter mu cannot be zero.\n";
+            return 1;
+        }
         file << mu << std::endl;
     } else {
         std::cerr << "Error: Invalid fixed parameter specified.\n";
         print_usage();
         return 1;
-    } 
+    }
+
+
+    // HAMILTONIAN INITIALIZATION
+    auto start = std::chrono::high_resolution_clock::now();
+    BH jmatrix(nei, m, n, 1, 0, 0);
+    Eigen::SparseMatrix<double> jsmatrix = jmatrix.getHamiltonian();
+    Operator JH(std::move(jsmatrix));
     
+    BH Umatrix(nei, m, n, 0, 1, 0);
+    Eigen::SparseMatrix<double> Usmatrix = Umatrix.getHamiltonian();
+    Operator UH(std::move(Usmatrix));
+
+    BH umatrix(nei, m, n, 0, 0, 1);
+    Eigen::SparseMatrix<double> usmatrix = umatrix.getHamiltonian();
+    Operator uH(std::move(usmatrix));
+    
+    
+    // SETTING THE NUMBER OF THREADS FOR PARALLELIZATION
+    long available_memory = get_available_memory();
+    std::cout << "Available memory: " << available_memory << " KB" << std::endl;
+    size_t jsmatrixMemoryUsage = estimateSparseMatrixMemoryUsage(jsmatrix);
+    size_t usmatrixMemoryUsage = estimateSparseMatrixMemoryUsage(Usmatrix);
+    size_t umatrixMemoryUsage = estimateSparseMatrixMemoryUsage(usmatrix);
+    size_t totalMemoryUsage = jsmatrixMemoryUsage + usmatrixMemoryUsage + umatrixMemoryUsage;
+    std::cout << "Estimated total memory usage for sparse matrices: " << totalMemoryUsage << " bytes" << std::endl;
+    int num_threads = std::min(available_memory / totalMemoryUsage, static_cast<size_t>(omp_get_max_threads()));
+    omp_set_num_threads(8);
+    std::cout << "Using OpenMP with " << num_threads << " threads." << std::endl;
+    
+
+    // CALCULATING AND SAVING THE PHASE TRANSITION PARAMETERS
     if (fixed_param == "J") {
-        for (double U = U_min; U <= U_max; U += s) {
-            for (double mu = mu_min; mu <= mu_max; mu += s) {
-                BH hmatrix(nei, m, n, J, U, mu);
-                Eigen::SparseMatrix<double> smatrix = hmatrix.getHamiltonian();
-                Operator H(std::move(smatrix));
+        JH = JH * J; 
+        #pragma omp parallel for collapse(2) schedule(dynamic)
+        for (int i = 0; i < static_cast<int>((U_max - U_min) / s) + 1; ++i) {
+            for (int j = 0; j < static_cast<int>((mu_max - mu_min) / s) + 1; ++j) {
+                double U = U_min + i * s;
+                double mu = mu_min + j * s;
+                Operator H = JH + UH * U + uH * mu;
                 double gap_ratio = H.gap_ratio();
-                double boson_density = H.boson_density(dmu, n);
-                double compressibility = H.compressibility(dmu, n);
-                file << U << " " << mu << " " << gap_ratio << " " << boson_density << " " << compressibility << std::endl;
+                double boson_density = 0;
+                double compressibility = 0;
+                #pragma omp critical
+                {
+                    file << U << " " << mu << " " << gap_ratio << " " << boson_density << " " << compressibility << std::endl;
+                }
             }
-        }
+        } 
     } else if (fixed_param == "U") {
-        for (double J = J_min; J <= J_max; J += s) {
-            for (double mu = mu_min; mu <= mu_max; mu += s) {
-                BH hmatrix(nei, m, n, J, U, mu);
-                Eigen::SparseMatrix<double> smatrix = hmatrix.getHamiltonian();
-                Operator H(std::move(smatrix));
+        UH = UH * U;
+        #pragma omp parallel for collapse(2) schedule(dynamic)
+        for (int i = 0; i < static_cast<int>((J_max - J_min) / s) + 1; ++i) {
+            for (int j = 0; j < static_cast<int>((mu_max - mu_min) / s) + 1; ++j) {
+                double J = J_min + i * s;
+                double mu = mu_min + j * s;
+                Operator H = JH * J + UH + uH * mu;
                 double gap_ratio = H.gap_ratio();
-                double boson_density = H.boson_density(dmu, n);
-                double compressibility = H.compressibility(dmu, n);
-                file << J << " " << mu << " " << gap_ratio << " " << boson_density << " " << compressibility << std::endl;
+                double boson_density = 0;
+                double compressibility = 0;
+                #pragma omp critical
+                {
+                    file << J << " " << mu << " " << gap_ratio << " " << boson_density << " " << compressibility << std::endl;
+                }
             }
-        }
+        } 
     } else if (fixed_param == "u") {
-        for (double J = J_min; J <= J_max; J += s) {
-            for (double U = U_min; U <= U_max; U += s) {
-                BH hmatrix(nei, m, n, J, U, mu);
-                Eigen::SparseMatrix<double> smatrix = hmatrix.getHamiltonian();
-                Operator H(std::move(smatrix));
+        uH = uH * mu;
+        #pragma omp parallel for collapse(2) schedule(dynamic)
+        for (int i = 0; i < static_cast<int>((J_max - J_min) / s) + 1; ++i) {
+            for (int j = 0; j < static_cast<int>((U_max - U_min) / s) + 1; ++j) {
+                double J = J_min + i * s;
+                double U = U_min + j * s;
+                Operator H = JH * J + UH * U + uH;
                 double gap_ratio = H.gap_ratio();
-                double boson_density = H.boson_density(dmu, n);
-                double compressibility = H.compressibility(dmu, n);
-                file << J << " " << U << " " << gap_ratio << " " << boson_density << " " << compressibility << std::endl;
+                double boson_density = 0;
+                double compressibility = 0;
+                #pragma omp critical
+                {
+                    file << J << " " << U << " " << gap_ratio << " " << boson_density << " " << compressibility << std::endl;
+                }
             }
         }
     } 
     file.close();
+
+
+    // EFFICIENCY OF THE CALCULATION
+    auto end = std::chrono::high_resolution_clock::now();
+    std::chrono::duration<double> duration = end - start;
+    if (duration.count() > 60) {
+        int minutes = static_cast<int>(duration.count()) / 60;
+        double seconds = duration.count() - (minutes * 60);
+        std::cout << "Parameters calculation time: " << minutes << " minutes " << seconds << " seconds" << std::endl;
+    } else {
+        std::cout << "Parameters calculation time: " << duration.count() << " seconds" << std::endl;
+    }
+    get_memory_usage(true);
+
+
+    // PLOT OF THE PHASE TRANSITION
 	int result = system("python3 plot.py");
 	if (result != 0) {
 		std::cerr << "Error when executing Python script." << std::endl;

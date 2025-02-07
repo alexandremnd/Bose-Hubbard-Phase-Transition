@@ -17,7 +17,7 @@ using namespace Spectra;
 
     /* CONSTRUCTOR */
 
-Operator::Operator(Eigen::SparseMatrix<double>&& smatrix) : O(std::move(smatrix)), D(smatrix.rows()), ref(1e-10) {}
+Operator::Operator(Eigen::SparseMatrix<double>&& smatrix) : O(std::move(smatrix)), D(smatrix.rows()), ref(1e-6) {}
 
 
     /* UTILITY FUNCTIONS */
@@ -43,23 +43,21 @@ Operator Operator::Identity(int size) {
     /* ADDITION AND MULTIPLICATION */
 
 /* add a matrix to an operand of type SparseMatrix with same size */
-Operator& Operator::operator + (const Operator& operand) {
+Operator Operator::operator + (const Operator& operand) const {
     if (this->O.rows() != operand.O.rows() || this->O.cols() != operand.O.cols()) { // verify that the operands have matching size
         throw std::invalid_argument("Matrix should have matching size.");
     }
-    this->O = (this->O + operand.O).pruned(ref); // removes elements smaller than ref
-    return *this;
+    Eigen::SparseMatrix<double> result_matrix = (this->O + operand.O).pruned(ref); // removes elements smaller than ref
+    return Operator(std::move(result_matrix));
 }
 
 /* multiply a sparse matrix by a multiplicand of type SparseMatrix with same size */
-Operator& Operator::operator * (const Operator& multiplicand) {
+Operator Operator::operator * (const Operator& multiplicand) const {
     if (this->O.cols() != multiplicand.O.rows()) {
         throw std::invalid_argument("Number of columns of multiplier must equal number of rows of multiplicand."); // verify that the number of columns of multiplier equals number of rows of multiplicand
     }
-    Eigen::SparseMatrix<double> smatrix(this->O.rows(), multiplicand.O.cols());
-    Operator result(std::move(smatrix));
-    this->O = (this->O * multiplicand.O).pruned(ref); // removes elements smaller than ref
-    return *this;
+    Eigen::SparseMatrix<double> result_matrix = (this->O * multiplicand.O).pruned(ref); // removes elements smaller than ref
+    return Operator(std::move(result_matrix));
 }
 
 /* multiply a sparse matrix by a vector with concomitant size */
@@ -71,11 +69,9 @@ Eigen::VectorXd Operator::operator * (const Eigen::VectorXd& vector) const {
 }
 
 /* multiply a sparse matrix by a scalar */
-Operator& Operator::operator * (double scalar) {
-    Eigen::SparseMatrix<double> smatrix(this->O.rows(), this->O.cols());
-    Operator result(std::move(smatrix));
-    this->O = (this->O * scalar).pruned(ref); // removes elements smaller than ref
-    return *this;
+Operator Operator::operator * (double scalar) const {
+    Eigen::SparseMatrix<double> result_matrix = (this->O * scalar).pruned(ref); // removes elements smaller than ref
+    return Operator(std::move(result_matrix));
 }
 
 

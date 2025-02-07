@@ -67,18 +67,16 @@ public:
      * 
      * @param operand The matrix to add.
      * @return Operator The result of the addition.
-     * @warning This function modifies the values of the operator.
      */
-    Operator& operator + (const Operator& operand);
+    Operator operator + (const Operator& operand) const;
 
     /**
      * @brief Multiply a sparse matrix by a multiplicand of type SparseMatrix with same size.
      * 
      * @param multiplicand The matrix to multiply.
      * @return Operator The result of the multiplication.
-     * @warning This function modifies the values of the operator.
      */
-    Operator& operator * (const Operator& multiplicand);
+    Operator operator * (const Operator& multiplicand) const;
 
     /**
      * @brief Multiply a sparse matrix by a vector with concomitant size.
@@ -93,9 +91,8 @@ public:
      * 
      * @param scalar The scalar to multiply.
      * @return Operator The result of the multiplication.
-     * @warning This function modifies the values of the operator.
      */
-    Operator& operator * (double scalar);
+    Operator operator * (double scalar) const;
 
 // DIAGONALIZATION : 
 
