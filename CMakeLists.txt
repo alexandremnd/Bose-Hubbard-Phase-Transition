@@ -1,5 +1,5 @@
-cmake_minimum_required(VERSION 3.20) # old CMake version 
-project(QuantumProject) # name of the executable of the project 
+cmake_minimum_required(VERSION 3.20) # old CMake version
+project(QuantumProject) # name of the executable of the project
 
 # cmake_policy(SET CMP0167 NEW)
 
@@ -9,8 +9,10 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 
 # ======== Dependencies ========
-include_directories(${CMAKE_SOURCE_DIR}/include)  
-include_directories(${CMAKE_SOURCE_DIR}/external/spectra/include) 
+include_directories(${CMAKE_SOURCE_DIR}/include)
+include_directories(${CMAKE_SOURCE_DIR}/external/spectra/include)
+
+configure_file(${PROJECT_SOURCE_DIR}/plot.py ${PROJECT_BINARY_DIR} @ONLY)
 
 
 # ======== Build ========
