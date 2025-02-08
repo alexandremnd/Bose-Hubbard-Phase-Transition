@@ -36,7 +36,7 @@ int Operator::size() const {
 Operator Operator::Identity(int size) {
     Eigen::SparseMatrix<double> identity(size, size);
     identity.setIdentity();
-    return Operator(std::move(identity));
+    return identity;
 }
 
 
@@ -48,7 +48,7 @@ Operator Operator::operator + (const Operator& operand) const {
         throw std::invalid_argument("Matrix should have matching size.");
     }
     Eigen::SparseMatrix<double> result_matrix = (this->O + operand.O).pruned(ref); // removes elements smaller than ref
-    return Operator(std::move(result_matrix));
+    return result_matrix;
 }
 
 /* multiply a sparse matrix by a multiplicand of type SparseMatrix with same size */
@@ -57,7 +57,7 @@ Operator Operator::operator * (const Operator& multiplicand) const {
         throw std::invalid_argument("Number of columns of multiplier must equal number of rows of multiplicand."); // verify that the number of columns of multiplier equals number of rows of multiplicand
     }
     Eigen::SparseMatrix<double> result_matrix = (this->O * multiplicand.O).pruned(ref); // removes elements smaller than ref
-    return Operator(std::move(result_matrix));
+    return result_matrix;
 }
 
 /* multiply a sparse matrix by a vector with concomitant size */
@@ -71,7 +71,7 @@ Eigen::VectorXd Operator::operator * (const Eigen::VectorXd& vector) const {
 /* multiply a sparse matrix by a scalar */
 Operator Operator::operator * (double scalar) const {
     Eigen::SparseMatrix<double> result_matrix = (this->O * scalar).pruned(ref); // removes elements smaller than ref
-    return Operator(std::move(result_matrix));
+    return result_matrix;
 }
 
 
@@ -86,7 +86,7 @@ Operator Operator::operator * (double scalar) const {
 Eigen::VectorXcd Operator::IRLM_eigen(int nb_eigen, Eigen::MatrixXcd& eigenvectors) const {
     SparseGenMatProd<double> op(this->O); // create a compatible matrix object
     GenEigsSolver<SparseGenMatProd<double>> eigs(op, nb_eigen, 2 * nb_eigen+1); // create an eigen solver object
-    eigs.init(); 
+    eigs.init();
     [[maybe_unused]] int nconv = eigs.compute(Spectra::SortRule::SmallestReal); // solve the eigen problem
     if (eigs.info() != Spectra::CompInfo::Successful) { // verify if the eigen search is a success
         throw std::runtime_error("Eigenvalue computation failed.");
@@ -111,7 +111,7 @@ void Operator::FOLM_diag(int nb_iter, Eigen::VectorXd& v_0, Eigen::MatrixXd& T, 
 
     // Lanczos algorithm for nb_iter iterations
     for (int i = 0; i < nb_iter; i++) {
-        Eigen::VectorXd w = this->O * V.col(i); // calculate the next vector w 
+        Eigen::VectorXd w = this->O * V.col(i); // calculate the next vector w
         alpha = (V.col(i)).dot(w);
         for (int j = 0; j < i; j++) {
             w = w - (V.col(j)).dot(w) * V.col(j); // orthogonalize the vector w with respect to the previous vectors of the Krylov basis
@@ -137,7 +137,7 @@ void Operator::FOLM_diag(int nb_iter, Eigen::VectorXd& v_0, Eigen::MatrixXd& T, 
 /* Calculate the approximate eigenvalues and eigenvectors of the hamiltonian using the Lanczos algorithm */
 Eigen::VectorXd Operator::FOLM_eigen(int nb_iter, Eigen::MatrixXd& eigenvectors) const {
     Eigen::MatrixXd V(D, nb_iter); // initialize the matrix V of vectors of the Krylov basis
-    Eigen::MatrixXd T(nb_iter,nb_iter); // initialize the tridiagonal matrix T 
+    Eigen::MatrixXd T(nb_iter,nb_iter); // initialize the tridiagonal matrix T
     Eigen::VectorXd v_0 = Eigen::VectorXd::Random(D); // initialize a random vector v_0
     FOLM_diag(nb_iter, v_0, T, V); // tridiagonalize the hamiltonian using Lanczos algorithm
     Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> eigensolver(T); // solve the eigen problem for T
@@ -171,7 +171,7 @@ Eigen::VectorXd Operator::exact_eigen(Eigen::MatrixXd& eigenvectors) const {
 
 
 // TODO: Implement the order parameter calculation
-/* Calculate the order parameter of the system */ 
+/* Calculate the order parameter of the system */
 double Operator::order_parameter(const Eigen::VectorXd& eigenvalues, const Eigen::MatrixXd& eigenvectors) const {
     throw std::logic_error("This function has not been implemented yet.");
 }
@@ -186,7 +186,7 @@ double Operator::gap_ratio() {
     return (E1 - E0) / (E1 + E0);
 }
 
-    
+
     /* SPECIFIC CALCULATIONS */
 
 
@@ -212,7 +212,7 @@ double Operator::partition_function(const Eigen::VectorXd& eigenvalues, double t
     double beta = 1 / (k_B * temperature);
     double Z = 0;
 	for (int i = 0; i < eigenvalues.size(); i++) { // calculate the partition function using properties of the trace
-        Z += exp(-beta * eigenvalues[i]); 
+        Z += exp(-beta * eigenvalues[i]);
     }
     return Z;
 }
