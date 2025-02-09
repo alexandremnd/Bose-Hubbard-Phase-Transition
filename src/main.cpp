@@ -4,6 +4,7 @@
 #include <cmath>
 #include <fstream>
 #include <iostream>
+#include <sstream>
 #include <vector>
 #include <chrono>
 #include <complex>
@@ -15,10 +16,80 @@
 #include "hamiltonian.h"
 #include "operator.h"
 #include "neighbours.h"
+#include "thread_pool.hpp"
 
+void compute_gap_ratio(std::string fixed_param, double J, double U, double mu, Operator& JH, Operator& UH, Operator& uH, std::ofstream& file) {
+    Operator H = JH * J + UH * U + uH * mu;
 
+    double gap_ratio = H.gap_ratio();
+    double boson_density = 0;
+    double compressibility = 0;
 
-/** 
+    double p1, p2;
+    if (fixed_param == "J") {
+        p1 = U;
+        p2 = mu;
+    } else if (fixed_param == "U") {
+        p1 = J;
+        p2 = mu;
+    } else if (fixed_param == "u") {
+        p1 = J;
+        p2 = U;
+    } else {
+        std::cerr << "Error: Invalid fixed parameter specified.\n";
+        return;
+    }
+
+    std::stringstream ss;
+    ss << p1 << " " << p2 << " " << gap_ratio << " " << boson_density << " " << compressibility << "\n";
+    file << ss.str();
+}
+
+void compute_phase_transition(std::string fixed_param, double fixed, double p1_min, double p1_max, double p2_min, double p2_max, double s, Operator& JH, Operator& UH, Operator& uH, std::ofstream& file) {
+    double J = 0, U = 0, mu = 0;
+    double *parameter_1, *parameter_2;
+
+    if (fixed_param == "J") {
+        J = fixed;
+        parameter_1 = &U;
+        parameter_2 = &mu;
+    } else if (fixed_param == "U") {
+        U = fixed;
+        parameter_1 = &J;
+        parameter_2 = &mu;
+    } else if (fixed_param == "u") {
+        mu = fixed;
+        parameter_1 = &J;
+        parameter_2 = &U;
+    } else {
+        std::cerr << "Error: Invalid fixed parameter specified.\n";
+        return;
+    }
+
+    ThreadPool pool;
+    pool.start(-1);
+
+    for (int i = 0; i < static_cast<int>((p1_max - p1_min) / s) + 1; ++i) {
+        for (int j = 0; j < static_cast<int>((p2_max - p2_min) / s) + 1; ++j) {
+            *parameter_1 = p1_min + i * s;
+            *parameter_2 = p2_min + j * s;
+
+            pool.queue_job([fixed_param, J, U, mu, &JH, &UH, &uH, &file]() {
+                compute_gap_ratio(fixed_param, J, U, mu, JH, UH, uH, file);
+            });
+        }
+    }
+
+    while (pool.busy()) {
+        std::this_thread::sleep_for(std::chrono::milliseconds(100));
+    }
+
+    pool.stop();
+
+    return;
+}
+
+/**
  * @brief Get the memory usage of the program in KB and optionally print it.
  * @param print If true, print the memory usage.
  * @return The memory usage in KB.
@@ -60,7 +131,7 @@ size_t estimateSparseMatrixMemoryUsage(const Eigen::SparseMatrix<double>& matrix
     size_t numNonZeros = matrix.nonZeros();
     size_t numCols = matrix.cols();
     size_t memoryUsage = numNonZeros * sizeof(double);
-    memoryUsage += numNonZeros * sizeof(int); 
+    memoryUsage += numNonZeros * sizeof(int);
     memoryUsage += (numCols + 1) * sizeof(int);
     return memoryUsage;
 }
@@ -84,12 +155,12 @@ void print_usage() {
 
 /**
  * @brief Main function for the Bose-Hubbard Phase Transition program.
- * 
+ *
  * This function parses command-line arguments to set up the parameters for the Bose-Hubbard model.
- * 
+ *
  * @param argc Number of command-line arguments.
  * @param argv Array of command-line arguments.
- * 
+ *
  * Command-line options:
  * - `-m, --sites`: Number of sites in the lattice.
  * - `-n, --bosons`: Number of bosons in the lattice.
@@ -100,7 +171,7 @@ void print_usage() {
  * - `-s, --step`: Step for chemical potential and interaction.
  * - `-f, --fixed`: Fixed parameter (J, U, or u).
  * - `-h, --help`: Display usage information.
- * 
+ *
  * @return int Exit status of the program.
  * @warning s must be smaller than r.
  */
@@ -186,7 +257,7 @@ int main(int argc, char *argv[]) {
 
     // OPENING THE FILE TO SAVE THE MAP VALUES
     std::ofstream file("phase.txt");
-    file << fixed_param << " "; 
+    file << fixed_param << " ";
     if (fixed_param == "J") {
         if (J == 0) {
             std::cerr << "Error: Fixed parameter J cannot be zero.\n";
@@ -217,7 +288,7 @@ int main(int argc, char *argv[]) {
     BH jmatrix(nei, m, n, 1, 0, 0);
     Eigen::SparseMatrix<double> jsmatrix = jmatrix.getHamiltonian();
     Operator JH(std::move(jsmatrix));
-    
+
     BH Umatrix(nei, m, n, 0, 1, 0);
     Eigen::SparseMatrix<double> Usmatrix = Umatrix.getHamiltonian();
     Operator UH(std::move(Usmatrix));
@@ -225,8 +296,8 @@ int main(int argc, char *argv[]) {
     BH umatrix(nei, m, n, 0, 0, 1);
     Eigen::SparseMatrix<double> usmatrix = umatrix.getHamiltonian();
     Operator uH(std::move(usmatrix));
-    
-    
+
+
     // SETTING THE NUMBER OF THREADS FOR PARALLELIZATION
     long available_memory = get_available_memory();
     std::cout << "Available memory: " << available_memory << " KB" << std::endl;
@@ -238,61 +309,16 @@ int main(int argc, char *argv[]) {
     int num_threads = std::min(available_memory / totalMemoryUsage, static_cast<size_t>(omp_get_max_threads()));
     omp_set_num_threads(8);
     std::cout << "Using OpenMP with " << num_threads << " threads." << std::endl;
-    
+
 
     // CALCULATING AND SAVING THE PHASE TRANSITION PARAMETERS
     if (fixed_param == "J") {
-        JH = JH * J; 
-        #pragma omp parallel for collapse(2) schedule(dynamic)
-        for (int i = 0; i < static_cast<int>((U_max - U_min) / s) + 1; ++i) {
-            for (int j = 0; j < static_cast<int>((mu_max - mu_min) / s) + 1; ++j) {
-                double U = U_min + i * s;
-                double mu = mu_min + j * s;
-                Operator H = JH + UH * U + uH * mu;
-                double gap_ratio = H.gap_ratio();
-                double boson_density = 0;
-                double compressibility = 0;
-                #pragma omp critical
-                {
-                    file << U << " " << mu << " " << gap_ratio << " " << boson_density << " " << compressibility << std::endl;
-                }
-            }
-        } 
+        compute_phase_transition(fixed_param, J, U_min, U_max, mu_min, mu_max, s, JH, UH, uH, file);
     } else if (fixed_param == "U") {
-        UH = UH * U;
-        #pragma omp parallel for collapse(2) schedule(dynamic)
-        for (int i = 0; i < static_cast<int>((J_max - J_min) / s) + 1; ++i) {
-            for (int j = 0; j < static_cast<int>((mu_max - mu_min) / s) + 1; ++j) {
-                double J = J_min + i * s;
-                double mu = mu_min + j * s;
-                Operator H = JH * J + UH + uH * mu;
-                double gap_ratio = H.gap_ratio();
-                double boson_density = 0;
-                double compressibility = 0;
-                #pragma omp critical
-                {
-                    file << J << " " << mu << " " << gap_ratio << " " << boson_density << " " << compressibility << std::endl;
-                }
-            }
-        } 
+        compute_phase_transition(fixed_param, U, J_min, J_max, mu_min, mu_max, s, JH, UH, uH, file);
     } else if (fixed_param == "u") {
-        uH = uH * mu;
-        #pragma omp parallel for collapse(2) schedule(dynamic)
-        for (int i = 0; i < static_cast<int>((J_max - J_min) / s) + 1; ++i) {
-            for (int j = 0; j < static_cast<int>((U_max - U_min) / s) + 1; ++j) {
-                double J = J_min + i * s;
-                double U = U_min + j * s;
-                Operator H = JH * J + UH * U + uH;
-                double gap_ratio = H.gap_ratio();
-                double boson_density = 0;
-                double compressibility = 0;
-                #pragma omp critical
-                {
-                    file << J << " " << U << " " << gap_ratio << " " << boson_density << " " << compressibility << std::endl;
-                }
-            }
-        }
-    } 
+        compute_phase_transition(fixed_param, mu, J_min, J_max, U_min, U_max, s, JH, UH, uH, file);
+    }
     file.close();
 
 
@@ -321,7 +347,7 @@ int main(int argc, char *argv[]) {
 	// Eigen::SparseMatrix<double> smatrix = hmatrix.getHamiltonian();
 	// Operator H(std::move(smatrix));
 
-	// // USING THE FOLM 
+	// // USING THE FOLM
 	// int k = H.size(); // Number of eigenvalues to calculate
 	// Eigen::VectorXd v_0 = Eigen::VectorXd::Random(H.size()); // Random initial vector
 	// Eigen::MatrixXd eigenvectors1;
@@ -333,8 +359,8 @@ int main(int argc, char *argv[]) {
 	// std::cout << "FOLM execution time: " << duration.count() << " seconds" << std::endl;
     // std::cout << "smallest eigenvalue : " << eigenvalues1.transpose()[0] << std::endl;
     // std::cout << "number of calculated eigenvalues : " << eigenvalues1.size() << std::endl << std::endl;
-	
-	// // USING THE IRLM 
+
+	// // USING THE IRLM
     // Eigen::MatrixXd eigenvectors2;
 	// start = std::chrono::high_resolution_clock::now();
 	// Eigen::VectorXcd eigenvalues2 = H.IRLM_eigen(1, eigenvectors2); // IRLM
