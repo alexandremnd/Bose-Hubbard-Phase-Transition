@@ -70,7 +70,7 @@ To generate the HTML documentation using Doxygen on a Linux system, follow these
 The documentation will be generated in the `docs/html` directory. The main page can be opened by navigating to `docs/html/index.html` in your web browser:
 
 ```sh
-xdg-open docs/html/index.html
+firefox docs/html/index.html
 ```
 
 ### LaTeX Documentation
@@ -137,6 +137,7 @@ Make sure you have the required dependencies installed. You can then launch the 
 
 - [Maximilien HANTONNE](https://github.com/Maximilien-Hantonne)
 - [Rémy LYSCAR](https://github.com/Remy-Lyscar)
+- [Alexandre MENARD](https://github.com/alexandremnd)
   
 ## Contributing
 
