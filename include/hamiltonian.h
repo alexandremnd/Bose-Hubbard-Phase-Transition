@@ -15,7 +15,7 @@
  */
 
 class BH {
-private:
+protected:
 
 // PARAMETERS OF THE BH MODEL
 
@@ -102,3 +102,4 @@ public:
     */
     Eigen::SparseMatrix<double> getHamiltonian() const; 
 }; 
+
