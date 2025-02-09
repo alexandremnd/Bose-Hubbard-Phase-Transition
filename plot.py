@@ -36,6 +36,11 @@ boson_density = data[:, 3]
 compressibility = data[:, 4]
 
 # Create a grid for x and y
+ind = np.lexsort((y_values, x_values))
+x_values = x_values[ind]
+y_values = y_values[ind]
+gap_ratio = gap_ratio[ind]
+
 x_unique = np.unique(x_values)
 y_unique = np.unique(y_values)
 x_grid, y_grid = np.meshgrid(x_unique, y_unique)

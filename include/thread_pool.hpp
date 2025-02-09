@@ -83,5 +83,4 @@ class ThreadPool {
         std::mutex tasks_mutex;
         std::condition_variable condition;
         bool done;
-
 };

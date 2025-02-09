@@ -67,7 +67,7 @@ void compute_phase_transition(std::string fixed_param, double fixed, double p1_m
     }
 
     ThreadPool pool;
-    pool.start(-1);
+    pool.start(6);
 
     for (int i = 0; i < static_cast<int>((p1_max - p1_min) / s) + 1; ++i) {
         for (int j = 0; j < static_cast<int>((p2_max - p2_min) / s) + 1; ++j) {
