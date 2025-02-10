@@ -33,7 +33,7 @@ void compute_phase_transition(std::string fixed_param, double fixed, double p1_m
     std::vector<double> density_values(size);
     std::vector<double> compressibility_values(size);
 
-    Operator H = Eigen::SparseMatrix<double>(JH.size(), JH.size());
+    Operator H = Eigen::SparseMatrix<double>(JH.rows(), JH.rows());
 
 
     for (size_t i = 0; i < size_x; ++i) {
