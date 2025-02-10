@@ -24,6 +24,10 @@ typedef Eigen::SparseMatrix<double> Operator;
  */
 Eigen::VectorXcd IRLM_eigen(Operator &op, int nb_eigen, Eigen::MatrixXcd& eigenvectors);
 
+Eigen::VectorXd IRLM_eigen_sym(Operator &op, int nb_eigen, Eigen::MatrixXd& eigenvectors);
+
+Eigen::VectorXd IRLM_eigen_herm(Operator &op, int nb_eigen, Eigen::MatrixXd& eigenvectors);
+
 /**
 * @brief Calculate the exact eigenvalues and eigenvectors of the Hamiltonian by an exact diagonalization.
 *
@@ -32,7 +36,7 @@ Eigen::VectorXcd IRLM_eigen(Operator &op, int nb_eigen, Eigen::MatrixXcd& eigenv
 * @return Eigen::Matrix<double> The vector of eigenvalues.
 * @warning This function is computationally expensive and should be used with caution.
 */
-Eigen::VectorXd exact_eigen(Operator &op, Eigen::MatrixXd& eigenvectors);
+Eigen::VectorXd exact_eigen(const Operator &op, Eigen::MatrixXd& eigenvectors);
 
 /**
  * @brief Full Orthogonalization Lanczos Method (FOLM) for a sparse matrix

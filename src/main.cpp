@@ -224,7 +224,7 @@ int main(int argc, char *argv[]) {
     Operator uH = umatrix.getHamiltonian();
 
 
-    // CALCULATING AND SAVING THE PHASE TRANSITION PARAMETERS
+    // // CALCULATING AND SAVING THE PHASE TRANSITION PARAMETERS
     if (fixed_param == "J") {
         compute_phase_transition(fixed_param, J, U_min, U_max, mu_min, mu_max, s, JH, UH, uH, file);
     } else if (fixed_param == "U") {

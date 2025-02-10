@@ -8,7 +8,16 @@
 #include <Spectra/MatOp/SparseGenMatProd.h>
 #include <Spectra/Util/SelectionRule.h>
 
+#include <Spectra/SymEigsSolver.h>
+#include <Spectra/MatOp/SparseSymMatProd.h>
+#include <Spectra/MatOp/SparseSymShiftSolve.h>
+#include <Spectra/SymEigsShiftSolver.h>
+#include <Spectra/HermEigsSolver.h>
+#include <Spectra/MatOp/SparseGenRealShiftSolve.h>
+#include <Spectra/DavidsonSymEigsSolver.h>
+
 #include "operator.hpp"
+#include "Spectra/MatOp/SparseHermMatProd.h"
 
 using namespace Spectra;
 
@@ -25,6 +34,42 @@ Eigen::VectorXcd IRLM_eigen(Operator &op, int nb_eigen, Eigen::MatrixXcd& eigenv
     Eigen::VectorXcd eigenvalues = eigs.eigenvalues();
     eigenvectors = eigs.eigenvectors();
 
+    return eigenvalues;
+}
+
+Eigen::VectorXd IRLM_eigen_sym(Operator &op, int nb_eigen, Eigen::MatrixXd& eigenvectors) {
+    op *= -1; // Little help for IRLM
+    SparseSymMatProd<double> mat_prod(op);
+    SymEigsSolver<SparseSymMatProd<double>> eigs(mat_prod, nb_eigen, 2 * nb_eigen + 1);
+
+    eigs.init();
+    int nconv = eigs.compute(Spectra::SortRule::LargestAlge);
+    if (eigs.info() != Spectra::CompInfo::Successful) {
+        throw std::runtime_error("Eigenvalue computation failed.");
+    }
+
+    Eigen::VectorXd eigenvalues = -eigs.eigenvalues();
+    eigenvectors = -eigs.eigenvectors();
+
+    op *= -1;
+    return eigenvalues;
+}
+
+Eigen::VectorXd IRLM_eigen_herm(Operator &op, int nb_eigen, Eigen::MatrixXd& eigenvectors) {
+    op *= -1; // Little help for IRLM
+    SparseHermMatProd<double> mat_prod(op);
+    HermEigsSolver<SparseHermMatProd<double>> eigs(mat_prod, nb_eigen, 2 * nb_eigen + 1);
+
+    eigs.init();
+    int nconv = eigs.compute(Spectra::SortRule::LargestAlge);
+    if (eigs.info() != Spectra::CompInfo::Successful) {
+        throw std::runtime_error("Eigenvalue computation failed.");
+    }
+
+    Eigen::VectorXd eigenvalues = -eigs.eigenvalues();
+    eigenvectors = -eigs.eigenvectors();
+
+    op *= -1;
     return eigenvalues;
 }
 
@@ -62,8 +107,9 @@ double gap_ratio(Operator &op) {
 
     int D = op.rows();
     int nb_eigen = std::min(20, D / 2);
-    double E0 = std::real(IRLM_eigen(op, nb_eigen, eigenvectors)[0]);
-    double E1 = std::real(IRLM_eigen(op, nb_eigen, eigenvectors)[1]);
+    auto eigenvalues = IRLM_eigen(op, nb_eigen, eigenvectors);
+    double E0 = std::real(eigenvalues[0]);
+    double E1 = std::real(eigenvalues[1]);
     return (E1 - E0) / (E1 + E0);
 }
 
