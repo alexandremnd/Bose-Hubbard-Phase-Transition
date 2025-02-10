@@ -23,7 +23,7 @@ add_executable(${PROJECT_NAME} ${SRC_FILES})
 # ======== Optimization ========
 # Enable compiler optimizations
 if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3 -march=native")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3 -march=native -DNEBUG")
 endif()
 
 
@@ -63,6 +63,6 @@ endif()
 
 
 # Add compiler warning flags
-target_compile_options(${PROJECT_NAME} PRIVATE -march=native)
+target_compile_options(${PROJECT_NAME} PRIVATE -march=native -pg)
 
 
