@@ -16,7 +16,6 @@
 #include "hamiltonian.h"
 #include "operator.h"
 #include "neighbours.h"
-#include "thread_pool.hpp"
 
 void compute_gap_ratio(std::string fixed_param, double J, double U, double mu, Operator& JH, Operator& UH, Operator& uH, std::ofstream& file) {
     Operator H = JH * J + UH * U + uH * mu;
@@ -66,25 +65,14 @@ void compute_phase_transition(std::string fixed_param, double fixed, double p1_m
         return;
     }
 
-    ThreadPool pool;
-    pool.start(6);
-
     for (int i = 0; i < static_cast<int>((p1_max - p1_min) / s) + 1; ++i) {
         for (int j = 0; j < static_cast<int>((p2_max - p2_min) / s) + 1; ++j) {
             *parameter_1 = p1_min + i * s;
             *parameter_2 = p2_min + j * s;
 
-            pool.queue_job([fixed_param, J, U, mu, &JH, &UH, &uH, &file]() {
-                compute_gap_ratio(fixed_param, J, U, mu, JH, UH, uH, file);
-            });
+            compute_gap_ratio(fixed_param, J, U, mu, JH, UH, uH, file);
         }
     }
-
-    while (pool.busy()) {
-        std::this_thread::sleep_for(std::chrono::milliseconds(100));
-    }
-
-    pool.stop();
 
     return;
 }
